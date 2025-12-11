@@ -1,0 +1,96 @@
+.home-scroll-pane {
+    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+    -fx-padding: 0;
+}
+
+.home-scroll-pane .viewport {
+    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+}
+
+.home-content {
+    -fx-background-color: transparent;
+    -fx-fill-width: true;
+}
+
+.dashboard-title {
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-padding: 0 0 10 0;
+}
+
+.dashboard-subtitle {
+    -fx-font-size: 16;
+    -fx-font-weight: normal;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-padding: 0 0 20 0;
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+    -fx-font-style: italic;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+}
+
+.dashboard-card {
+    -fx-background-color: #FFD700;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 4);
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-padding: 25px 20px;
+    -fx-border-color: #FFC700;
+    -fx-border-width: 2px;
+    -fx-border-radius: 12px;
+}
+
+.dashboard-card:hover {
+    -fx-background-color: #FFED4E;
+    -fx-border-color: #FFD700;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 12, 0, 0, 6);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+    -fx-cursor: pointer;
+}
+
+.dashboard-card:pressed {
+    -fx-background-color: #FFC700;
+    -fx-border-color: #FFB700;
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+}
+
+.card-icon {
+    -fx-font-size: 36;
+    -fx-padding: 0 0 10 0;
+    -fx-text-fill: #000000;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
+}
+
+.card-title {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-padding: 0 0 8 0;
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 2, 0, 0, 1);
+    -fx-text-alignment: center;
+    -fx-letter-spacing: 0.2px;
+}
+
+.card-value {
+    -fx-font-size: 32;
+    -fx-font-weight: bold;
+    -fx-text-fill: #000000;
+    -fx-padding: 8 0 8 0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+}
+
+.card-subtitle {
+    -fx-font-size: 12;
+    -fx-text-fill: #000000;
+    -fx-padding: 0;
+    -fx-wrap-text: true;
+    -fx-font-weight: 500;
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+}
+

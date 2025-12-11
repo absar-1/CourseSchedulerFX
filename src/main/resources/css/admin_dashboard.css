@@ -1,0 +1,11 @@
+.anchor-pane {
+    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+}
+
+.vbox {
+    -fx-background-color: transparent;
+}
+
+.stack-pane {
+    -fx-alignment: center;
+}
