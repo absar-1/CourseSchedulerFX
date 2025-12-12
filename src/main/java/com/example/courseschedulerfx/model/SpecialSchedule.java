@@ -9,13 +9,14 @@ public class SpecialSchedule {
     private ClassRoom classRoom;
     private Teacher teacher;
     private LocalDate scheduleDate;
+    private Batch batch;
     private String dayOfWeek;
     private LocalTime startTime;
     private LocalTime endTime;
     private String type; // "makeup" or "extra"
 
     public SpecialSchedule(int specialScheduleID, Course course, ClassRoom classRoom, Teacher teacher,
-                           LocalDate scheduleDate, String dayOfWeek, LocalTime startTime, LocalTime endTime, String type) {
+                           LocalDate scheduleDate, Batch batch, String dayOfWeek, LocalTime startTime, LocalTime endTime, String type) {
         if (startTime.isAfter(endTime) || startTime.equals(endTime)) {
             throw new IllegalArgumentException("Start time must be before end time");
         }
@@ -24,6 +25,7 @@ public class SpecialSchedule {
         this.classRoom = classRoom;
         this.teacher = teacher;
         this.scheduleDate = scheduleDate;
+        this.batch = batch;
         this.dayOfWeek = dayOfWeek;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -68,6 +70,14 @@ public class SpecialSchedule {
 
     public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
     }
 
 }

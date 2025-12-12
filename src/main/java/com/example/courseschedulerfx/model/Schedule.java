@@ -7,16 +7,18 @@ public class Schedule {
     private ClassRoom classRoom; // Database will store roomID
     private ClassSlot classSlot; // Database will store slotID
     private Teacher teacher; // Database will store teacherID
+    private Batch batch; // Database will store batchID
     private boolean isScheduled;
 
     public Schedule(int scheduleID, String dayOfWeek, Course course, ClassRoom classRoom,
-                    ClassSlot classSlot, Teacher teacher, boolean isScheduled) {
+                    ClassSlot classSlot, Teacher teacher, Batch batch, boolean isScheduled) {
         this.scheduleID = scheduleID;
         this.dayOfWeek = dayOfWeek;
         this.course = course;
         this.classRoom = classRoom;
         this.classSlot = classSlot;
         this.teacher = teacher;
+        this.batch = batch;
         this.isScheduled = isScheduled;
     }
 
@@ -66,6 +68,14 @@ public class Schedule {
 
     public void setDayOfWeek(String dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+    }
+
+    public Batch getBatch() {
+        return batch;
+    }
+
+    public void setBatch(Batch batch) {
+        this.batch = batch;
     }
 
     public boolean isScheduled() {
