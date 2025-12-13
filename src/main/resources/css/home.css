@@ -1,28 +1,61 @@
 .home-scroll-pane {
-    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+    -fx-background-color: linear-gradient(to bottom right, #1a237e, #0d47a1);
     -fx-padding: 0;
 }
 
 .home-scroll-pane .viewport {
-    -fx-background-color: linear-gradient(to bottom right, #667eea, #764ba2);
+    -fx-background-color: linear-gradient(to bottom right, #1a237e, #0d47a1);
 }
 
 .home-content {
     -fx-background-color: transparent;
     -fx-fill-width: true;
+    -fx-spacing: 0;
+}
+
+.home-content-inner {
+    -fx-background-color: transparent;
+    -fx-fill-width: true;
+    -fx-spacing: 20;
+}
+
+.headline-pane {
+    -fx-background-color: #CC0000;
+    -fx-padding: 10 0 10 0;
+    -fx-fill-width: true;
+    -fx-pref-height: 44;
+    -fx-max-width: Infinity;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 12, 0.2, 0, 4);
+    -fx-alignment: center;
+    -fx-overflow-hidden: hidden;
+    -fx-border-color: rgba(153, 0, 0, 0.9);
+    -fx-border-width: 0 0 2px 0;
+}
+
+.headline-label {
+    -fx-font-size: 14;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+    -fx-text-alignment: center;
+    -fx-padding: 10 30 10 30;
+    -fx-alignment: center;
+    -fx-wrap-text: false;
+    -fx-min-width: 2000;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.35), 3, 0, 0, 1);
 }
 
 .dashboard-title {
     -fx-font-size: 32;
     -fx-font-weight: bold;
-    -fx-text-fill: white;
+    -fx-text-fill: #ffffff;
     -fx-padding: 0 0 10 0;
 }
 
 .dashboard-subtitle {
     -fx-font-size: 16;
     -fx-font-weight: normal;
-    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-text-fill: #ffffff;
     -fx-padding: 0 0 20 0;
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
     -fx-font-style: italic;
@@ -30,48 +63,48 @@
 }
 
 .dashboard-card {
-    -fx-background-color: #FFD700;
+    -fx-background-color: rgba(66, 66, 66, 0.85);
     -fx-background-radius: 12;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 8, 0, 0, 4);
     -fx-alignment: center;
     -fx-cursor: hand;
     -fx-padding: 25px 20px;
-    -fx-border-color: #FFC700;
+    -fx-border-color: rgba(66, 165, 245, 0.6);
     -fx-border-width: 2px;
     -fx-border-radius: 12px;
 }
 
 .dashboard-card:hover {
-    -fx-background-color: #FFED4E;
-    -fx-border-color: #FFD700;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.6), 12, 0, 0, 6);
+    -fx-background-color: rgba(80, 80, 80, 0.9);
+    -fx-border-color: rgba(66, 165, 245, 0.9);
+    -fx-effect: dropshadow(gaussian, rgba(66, 165, 245, 0.5), 12, 0, 0, 6);
     -fx-scale-x: 1.05;
     -fx-scale-y: 1.05;
     -fx-cursor: pointer;
 }
 
 .dashboard-card:pressed {
-    -fx-background-color: #FFC700;
-    -fx-border-color: #FFB700;
+    -fx-background-color: rgba(55, 55, 55, 0.9);
+    -fx-border-color: rgba(66, 165, 245, 1.0);
     -fx-scale-x: 0.98;
     -fx-scale-y: 0.98;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 10, 0, 0, 5);
+    -fx-effect: dropshadow(gaussian, rgba(66, 165, 245, 0.6), 10, 0, 0, 5);
 }
 
 .card-icon {
     -fx-font-size: 36;
     -fx-padding: 0 0 10 0;
-    -fx-text-fill: #000000;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
+    -fx-text-fill: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.4), 4, 0, 0, 2);
 }
 
 .card-title {
     -fx-font-size: 16;
     -fx-font-weight: bold;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
     -fx-padding: 0 0 8 0;
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.4), 2, 0, 0, 1);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 3, 0, 0, 1);
     -fx-text-alignment: center;
     -fx-letter-spacing: 0.2px;
 }
@@ -79,20 +112,17 @@
 .card-value {
     -fx-font-size: 32;
     -fx-font-weight: bold;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
     -fx-padding: 8 0 8 0;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 2, 0, 0, 1);
+    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.3), 4, 0, 0, 2);
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
 }
 
 .card-subtitle {
     -fx-font-size: 12;
-    -fx-text-fill: #000000;
+    -fx-text-fill: #ffffff;
     -fx-padding: 0;
     -fx-wrap-text: true;
     -fx-font-weight: 500;
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
 }
-
-
-

@@ -12,14 +12,20 @@
             fitToWidth="true"
             stylesheets="@../css/home.css">
 
-    <VBox spacing="20" styleClass="home-content">
-        <padding>
-            <Insets top="30" left="30" right="30" bottom="30" />
-        </padding>
+    <VBox spacing="0" styleClass="home-content">
+        <!-- Headline Pane with Scrolling Animation -->
+        <Pane fx:id="headlinePane" styleClass="headline-pane" VBox.vgrow="NEVER" style="-fx-clip-to-outline: true; -fx-alignment: center;">
+            <Label fx:id="headlineLabel" styleClass="headline-label" />
+        </Pane>
 
-        <!-- Title -->
-        <Label text="Dashboard Overview" styleClass="dashboard-title" />
-        <Label text="Welcome back! Here's a quick look at your course management system." styleClass="dashboard-subtitle" />
+        <!-- Main Content Container with padding -->
+        <VBox spacing="20" styleClass="home-content-inner">
+            <padding>
+                <Insets top="30" left="30" right="30" bottom="30" />
+            </padding>
+
+            <!-- Title -->
+            <Label text="Dashboard Overview" styleClass="dashboard-title" />
 
         <!-- Cards Container - Grid Layout -->
         <HBox spacing="20" prefHeight="250">
@@ -67,6 +73,7 @@
                 <Label text="Available rooms" styleClass="card-subtitle" />
             </VBox>
         </HBox>
+        </VBox>
     </VBox>
 </ScrollPane>
 
