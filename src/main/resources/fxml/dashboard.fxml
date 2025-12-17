@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<ScrollPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.DashboardController"
+            prefHeight="600.0" prefWidth="900.0"
+            styleClass="dashboard-scroll-pane"
+            fitToWidth="true"
+            stylesheets="@../css/dashboard.css">
+
+    <VBox spacing="0" styleClass="dashboard-main-content">
+
+        <!-- Header Section -->
+        <VBox styleClass="dashboard-header-section" alignment="CENTER">
+            <padding>
+                <Insets top="40" left="40" right="40" bottom="30" />
+            </padding>
+            <Label text="📊 Course Scheduler Dashboard" styleClass="dashboard-main-title" />
+            <Label text="Manage all aspects of your course scheduling system" styleClass="dashboard-main-subtitle" />
+        </VBox>
+
+        <!-- Main Content Container -->
+        <VBox spacing="30" styleClass="dashboard-content-container">
+            <padding>
+                <Insets top="20" left="40" right="40" bottom="40" />
+            </padding>
+
+            <!-- Section: Scheduling (MAIN FEATURE) -->
+            <VBox spacing="15" styleClass="dashboard-section">
+                <Label text="📅 Scheduling" styleClass="section-title" />
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Create Schedule Card -->
+                    <VBox fx:id="createScheduleCard" styleClass="feature-card" onMouseClicked="#onCreateScheduleClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="📆" styleClass="feature-icon" />
+                        <Label text="Create Schedule" styleClass="feature-title" />
+                        <Label text="Create weekly class schedules" styleClass="feature-description" />
+                    </VBox>
+
+                    <!-- View Schedule Card -->
+                    <VBox fx:id="viewScheduleCard" styleClass="feature-card" onMouseClicked="#onViewScheduleClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="👁️" styleClass="feature-icon" />
+                        <Label text="View Schedule" styleClass="feature-title" />
+                        <Label text="View and manage existing schedules" styleClass="feature-description" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Section: User Management -->
+            <VBox spacing="15" styleClass="dashboard-section">
+                <Label text="👥 User Management" styleClass="section-title" />
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Add Admin Card -->
+                    <VBox fx:id="addAdminCard" styleClass="feature-card" onMouseClicked="#onAddAdminClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="👤" styleClass="feature-icon" />
+                        <Label text="Manage Admins" styleClass="feature-title" />
+                        <Label text="Add, edit, or remove administrator accounts" styleClass="feature-description" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Section: Academic Structure -->
+            <VBox spacing="15" styleClass="dashboard-section">
+                <Label text="🏛️ Academic Structure" styleClass="section-title" />
+                <HBox spacing="20" alignment="CENTER_LEFT">
+
+                    <!-- Courses Card -->
+                    <VBox fx:id="coursesCard" styleClass="feature-card" onMouseClicked="#onCoursesClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="📚" styleClass="feature-icon" />
+                        <Label text="Courses" styleClass="feature-title" />
+                        <Label text="Add and manage courses with credit hours" styleClass="feature-description" />
+                    </VBox>
+
+                    <!-- Batches Card -->
+                    <VBox fx:id="batchesCard" styleClass="feature-card" onMouseClicked="#onBatchesClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="🎓" styleClass="feature-icon" />
+                        <Label text="Batches" styleClass="feature-title" />
+                        <Label text="Manage student batches by year" styleClass="feature-description" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Section: People Management -->
+            <VBox spacing="15" styleClass="dashboard-section">
+                <Label text="👨‍🏫 People Management" styleClass="section-title" />
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Teachers Card -->
+                    <VBox fx:id="teachersCard" styleClass="feature-card" onMouseClicked="#onTeachersClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="👨‍🏫" styleClass="feature-icon" />
+                        <Label text="Teachers" styleClass="feature-title" />
+                        <Label text="Manage faculty members and assignments" styleClass="feature-description" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+            <!-- Section: Facility Management -->
+            <VBox spacing="15" styleClass="dashboard-section">
+                <Label text="🏫 Facility Management" styleClass="section-title" />
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Classrooms Card -->
+                    <VBox fx:id="classroomsCard" styleClass="feature-card" onMouseClicked="#onClassroomsClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="🚪" styleClass="feature-icon" />
+                        <Label text="Classrooms" styleClass="feature-title" />
+                        <Label text="Manage rooms and their capacities" styleClass="feature-description" />
+                    </VBox>
+
+                    <!-- Class Slots Card -->
+                    <VBox fx:id="classSlotsCard" styleClass="feature-card" onMouseClicked="#onClassSlotsClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="⏰" styleClass="feature-icon" />
+                        <Label text="Time Slots" styleClass="feature-title" />
+                        <Label text="Configure class timing slots" styleClass="feature-description" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
+        </VBox>
+    </VBox>
+</ScrollPane>

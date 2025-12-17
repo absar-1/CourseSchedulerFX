@@ -72,6 +72,17 @@
                 <Label fx:id="totalClassroomsLabel" text="0" styleClass="card-value" />
                 <Label text="Available rooms" styleClass="card-subtitle" />
             </VBox>
+
+            <!-- Admins Card - Clickable for User Management -->
+            <VBox fx:id="adminCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleAdminCardClick">
+                <padding>
+                    <Insets top="20" right="20" bottom="20" left="20" />
+                </padding>
+                <Label text="🔐" styleClass="card-icon" />
+                <Label text="Administrators" styleClass="card-title" />
+                <Label fx:id="totalAdminsLabel" text="0" styleClass="card-value" />
+                <Label text="Click to manage" styleClass="card-subtitle" />
+            </VBox>
         </HBox>
         </VBox>
     </VBox>

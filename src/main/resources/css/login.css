@@ -16,8 +16,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0, 0, 3);
     -fx-max-width: 400px;
     -fx-pref-width: 350px;
-    -fx-max-height: 520px;
-    -fx-pref-height: 500px;
+    -fx-max-height: 550px;
 }
 
 .label {

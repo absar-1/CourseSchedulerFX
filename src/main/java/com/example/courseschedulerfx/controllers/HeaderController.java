@@ -9,9 +9,11 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import com.example.courseschedulerfx.utils.WindowManager;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -63,17 +65,96 @@ public class HeaderController {
 
     @FXML
     public void onLogoClick() {
-        System.out.println("Logo clicked");
+        System.out.println("Logo clicked - navigating to home");
+        onHomeClick();
     }
 
     @FXML
     public void onHomeClick() {
         System.out.println("Home clicked");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
+            Parent homeContent = loader.load();
+
+            Parent root = logoIcon.getScene().getRoot();
+
+            VBox mainContainer = null;
+            if (root instanceof javafx.scene.layout.AnchorPane) {
+                for (javafx.scene.Node child : ((javafx.scene.layout.AnchorPane) root).getChildren()) {
+                    if (child instanceof VBox) {
+                        mainContainer = (VBox) child;
+                        break;
+                    }
+                }
+            }
+
+            if (mainContainer != null) {
+                if (mainContainer.getChildren().size() > 1) {
+                    mainContainer.getChildren().remove(1, mainContainer.getChildren().size());
+                }
+
+                mainContainer.getChildren().add(homeContent);
+                javafx.scene.layout.VBox.setVgrow(homeContent, javafx.scene.layout.Priority.ALWAYS);
+
+                System.out.println("Home page loaded successfully");
+            } else {
+                System.err.println("Could not find mainContainer VBox");
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error loading home page: " + e.getMessage());
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load Home");
+            alert.setContentText("An error occurred while loading the home page: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
-    @FXML
+@FXML
     public void onDashboardClick() {
         System.out.println("Dashboard clicked");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
+            Parent dashboardContent = loader.load();
+
+            Parent root = logoIcon.getScene().getRoot();
+
+            VBox mainContainer = null;
+            if (root instanceof javafx.scene.layout.AnchorPane) {
+                for (javafx.scene.Node child : ((javafx.scene.layout.AnchorPane) root).getChildren()) {
+                    if (child instanceof VBox) {
+                        mainContainer = (VBox) child;
+                        break;
+                    }
+                }
+            }
+
+            if (mainContainer != null) {
+                if (mainContainer.getChildren().size() > 1) {
+                    mainContainer.getChildren().remove(1, mainContainer.getChildren().size());
+                }
+
+                mainContainer.getChildren().add(dashboardContent);
+                javafx.scene.layout.VBox.setVgrow(dashboardContent, javafx.scene.layout.Priority.ALWAYS);
+
+                System.out.println("Dashboard loaded successfully");
+            } else {
+                System.err.println("Could not find mainContainer VBox");
+            }
+
+        } catch (IOException e) {
+            System.err.println("Error loading dashboard: " + e.getMessage());
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to load Dashboard");
+            alert.setContentText("An error occurred while loading the dashboard: " + e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -90,7 +171,6 @@ public class HeaderController {
             confirmAlert.getDialogPane().getStylesheets().add(appCss.toExternalForm());
         }
 
-        // Show confirmation and wait for response
         Optional<ButtonType> result = confirmAlert.showAndWait();
 
         if (result.isPresent() && result.get() == ButtonType.OK) {
@@ -98,10 +178,8 @@ public class HeaderController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/login.fxml"));
                 Parent loginRoot = loader.load();
 
-                // Get current stage
                 Stage currentStage = (Stage) logoutIcon.getScene().getWindow();
 
-                // Create new scene without fixed dimensions - let it size naturally
                 Scene loginScene = new Scene(loginRoot);
 
                 var loginCss = getClass().getResource("/css/login.css");
@@ -109,14 +187,12 @@ public class HeaderController {
                     loginScene.getStylesheets().add(loginCss.toExternalForm());
                 }
 
-                // Set scene
                 currentStage.setTitle("Login - Course Scheduler");
                 currentStage.setScene(loginScene);
 
                 // Apply normal window settings using WindowManager
                 WindowManager.applyNormalWindow(currentStage, 800, 600);
 
-                // Show the stage
                 currentStage.show();
 
 

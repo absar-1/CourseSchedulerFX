@@ -5,6 +5,8 @@ import com.example.courseschedulerfx.model.Admin;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 public class AdminDAO {
 
@@ -86,6 +88,93 @@ public class AdminDAO {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    // get admin by ID
+    public static Admin getAdminById(int adminID) {
+        String query = "SELECT * FROM admins WHERE admin_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setInt(1, adminID);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return new Admin(
+                        rs.getInt("admin_id"),
+                        rs.getString("admin_name"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return null;
+    }
+
+    // get all admins from database
+    public static List<Admin> getAllAdmins() {
+        List<Admin> admins = new ArrayList<>();
+        String query = "SELECT * FROM admins ORDER BY admin_id";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Admin admin = new Admin(
+                        rs.getInt("admin_id"),
+                        rs.getString("admin_name"),
+                        rs.getString("email"),
+                        rs.getString("password")
+                );
+                admins.add(admin);
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return admins;
+    }
+
+    // update admin in database
+    public static boolean updateAdmin(Admin admin) {
+        String query = "UPDATE admins SET admin_name = ?, email = ?, password = ? WHERE admin_id = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, admin.getAdminName());
+            ps.setString(2, admin.getEmail());
+            ps.setString(3, admin.getPassword());
+            ps.setInt(4, admin.getAdminID());
+
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // check if email already exists in database
+    public static boolean emailExists(String email) {
+        String query = "SELECT COUNT(*) AS count FROM admins WHERE email = ?";
+
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                return rs.getInt("count") > 0;
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return false;
     }
 
 }

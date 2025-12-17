@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.AddAdminController"
+            prefHeight="520.0" prefWidth="520.0"
+            styleClass="anchor-pane"
+            stylesheets="@../css/admin_form.css">
+
+    <StackPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               styleClass="stack-pane">
+
+        <VBox spacing="8" styleClass="form-card">
+            <padding>
+                <Insets top="20" left="25" right="25" bottom="20" />
+            </padding>
+
+            <!-- Title -->
+            <Label text="Add New Administrator" styleClass="form-title" />
+
+            <!-- Name Field -->
+            <VBox spacing="3">
+                <Label text="Full Name" styleClass="field-label" />
+                <TextField fx:id="nameField" promptText="Enter admin name" styleClass="text-field" />
+            </VBox>
+
+            <!-- Email Field -->
+            <VBox spacing="3">
+                <Label text="Email Address" styleClass="field-label" />
+                <TextField fx:id="emailField" promptText="Enter email address" styleClass="text-field" />
+            </VBox>
+
+            <!-- Password Field -->
+            <VBox spacing="3">
+                <Label text="Password" styleClass="field-label" />
+                <PasswordField fx:id="passwordField" promptText="Enter password" styleClass="password-field" />
+            </VBox>
+
+            <!-- Confirm Password Field -->
+            <VBox spacing="3">
+                <Label text="Confirm Password" styleClass="field-label" />
+                <PasswordField fx:id="confirmPasswordField" promptText="Confirm password" styleClass="password-field" />
+            </VBox>
+
+            <!-- Message Label -->
+            <Label fx:id="messageLabel" text="" styleClass="message-label" wrapText="true" />
+
+            <!-- Buttons -->
+            <HBox spacing="12" alignment="CENTER">
+                <padding>
+                    <Insets top="8" />
+                </padding>
+                <Button fx:id="saveBtn" text="Save" styleClass="btn-primary" onAction="#handleSave" />
+                <Button fx:id="cancelBtn" text="Cancel" styleClass="btn-secondary" onAction="#handleCancel" />
+            </HBox>
+        </VBox>
+    </StackPane>
+</AnchorPane>
+

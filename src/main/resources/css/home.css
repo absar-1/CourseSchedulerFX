@@ -110,7 +110,7 @@
 }
 
 .card-value {
-    -fx-font-size: 32;
+    -fx-font-size: 22;
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-padding: 8 0 8 0;
@@ -126,3 +126,4 @@
     -fx-font-weight: 500;
     -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
 }
+

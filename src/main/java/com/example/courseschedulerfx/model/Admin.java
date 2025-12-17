@@ -1,14 +1,5 @@
 package com.example.courseschedulerfx.model;
 
-import com.example.courseschedulerfx.DAO.AdminDAO;
-
-//CREATE TABLE admins (
-//        admin_id INT IDENTITY(1,1) PRIMARY KEY,
-//admin_name VARCHAR(100),
-//email VARCHAR(100) UNIQUE,
-//password VARCHAR(255)
-//);
-
 public class Admin {
     private int adminID;
     private String adminName;

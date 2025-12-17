@@ -32,6 +32,15 @@ public class SpecialSchedule {
         this.type = type;
     }
 
+    // constructor for headlines
+    public SpecialSchedule(Course course, ClassRoom classroom, Teacher teacher, LocalDate scheduleDate,String type) {
+        this.course = course;
+        this.classRoom = classroom;
+        this.teacher = teacher;
+        this.scheduleDate = scheduleDate;
+        this.type = type;
+    }
+
     public int getSpecialScheduleID() {
         return specialScheduleID;
     }

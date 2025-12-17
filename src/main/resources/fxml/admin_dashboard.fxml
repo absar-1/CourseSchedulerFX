@@ -8,7 +8,7 @@
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.courseschedulerfx.controllers.AdminDashBoardController"
             stylesheets="@../css/admin_dashboard.css">
-    <VBox fx:id="mainContainer" fillWidth="true"
+    <VBox fx:id="mainContainer" id="mainContainer" fillWidth="true"
           AnchorPane.bottomAnchor="0.0"
           AnchorPane.leftAnchor="0.0"
           AnchorPane.rightAnchor="0.0"
