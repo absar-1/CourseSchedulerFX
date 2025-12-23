@@ -43,12 +43,12 @@ public class AddBatchController {
 
     private void setupSpinners() {
         // Year spinner
-        SpinnerValueFactory<Integer> yearValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2000, 2100, 2024);
+        int currentYear = java.time.LocalDate.now().getYear();
+        SpinnerValueFactory<Integer> yearValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(2015, currentYear + 1, currentYear);
         yearSpinner.setValueFactory(yearValueFactory);
         yearSpinner.setEditable(true);
 
-        // Create a string converter for year spinner
-        yearSpinner.getValueFactory().setConverter(new javafx.util.StringConverter<Integer>() {
+        yearSpinner.getValueFactory().setConverter(new javafx.util.StringConverter<>() {
             @Override
             public String toString(Integer value) {
                 return value == null ? "" : value.toString();
@@ -58,11 +58,14 @@ public class AddBatchController {
             public Integer fromString(String string) {
                 try {
                     int value = Integer.parseInt(string);
-                    if (value >= 2000 && value <= 2100) {
+                    if (value >= 2015 && value <= currentYear + 1) {
                         return value;
+                    } else {
+                        showError("Year must be between 2015 and " + (currentYear + 1));
+                        return yearSpinner.getValue();
                     }
-                    return yearSpinner.getValue();
                 } catch (NumberFormatException e) {
+                    showError("Invalid year format");
                     return yearSpinner.getValue();
                 }
             }
@@ -153,8 +156,8 @@ public class AddBatchController {
             return;
         }
 
-        if (year == null || year < 2000 || year > 2100) {
-            showError("Please enter a valid year of admission");
+        if (year == null || year < 1900 || year > 2100) {
+            showError("Please enter a valid year of admission (between 1900 and 2100)");
             return;
         }
 
@@ -240,4 +243,5 @@ public class AddBatchController {
         alert.showAndWait();
     }
 }
+
 

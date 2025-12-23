@@ -50,10 +50,10 @@ public class LoginController {
                 Image loginImageFile = new Image(imageStream);
                 loginImage.setImage(loginImageFile);
             } else {
-                System.err.println("Could not find login image at /images/login.png");
+
             }
         } catch (Exception e) {
-            System.err.println("Could not load login image: " + e.getMessage());
+
         }
 
         loginButton.setOnAction(this::handleLoginButtonAction);
@@ -102,7 +102,7 @@ public class LoginController {
                     loaderOverlay.setVisible(false);
                     loginButton.setDisable(false);
                     errorLabel.setText("Login failed: " + e.getMessage());
-                    System.err.println("Login error: " + e.getMessage());
+
                 });
             }
         }).start();
@@ -127,7 +127,7 @@ public class LoginController {
             if (headerController != null) {
                 headerController.setUserLabel(admin.getAdminName());
             } else {
-                System.out.println("LoginController: headerController is null");
+
             }
 
             // Unmaximize current stage first if it was maximized
@@ -163,7 +163,8 @@ public class LoginController {
 
         } catch (Exception e) {
             errorLabel.setText("Error loading dashboard: " + e.getMessage());
-            System.out.println("Error loading dashboard: " + e.getMessage());
+
         }
     }
 }
+

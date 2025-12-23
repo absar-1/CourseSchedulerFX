@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.EditSpecialScheduleController"
+            prefHeight="750.0" prefWidth="600.0"
+            styleClass="anchor-pane"
+            stylesheets="@../css/special_schedule_form.css">
+
+    <StackPane AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+               styleClass="stack-pane">
+        <ScrollPane fitToWidth="true" fitToHeight="true" style="-fx-fitsToHeight: true; -fx-fitsToWidth: true;">
+            <VBox styleClass="form-card" spacing="8">
+                <padding>
+                    <Insets top="20" left="25" right="25" bottom="20" />
+                </padding>
+
+                <!-- Title -->
+                <Label text="Edit Special Schedule" styleClass="form-title" />
+
+                <!-- NOTE: Schedule ID is NOT shown or editable -->
+
+                <!-- Course Selection -->
+                <VBox spacing="3">
+                    <Label text="Course *" styleClass="field-label" />
+                    <ComboBox fx:id="courseCombo" styleClass="combo-field" promptText="Select course..." />
+                </VBox>
+
+                <!-- Classroom Selection -->
+                <VBox spacing="3">
+                    <Label text="Classroom *" styleClass="field-label" />
+                    <ComboBox fx:id="classroomCombo" styleClass="combo-field" promptText="Select classroom..." />
+                </VBox>
+
+                <!-- Teacher Selection -->
+                <VBox spacing="3">
+                    <Label text="Teacher *" styleClass="field-label" />
+                    <ComboBox fx:id="teacherCombo" styleClass="combo-field" promptText="Select teacher..." />
+                </VBox>
+
+                <!-- Schedule Date Selection -->
+                <VBox spacing="3">
+                    <Label text="Schedule Date *" styleClass="field-label" />
+                    <DatePicker fx:id="scheduleDatePicker" styleClass="date-field" />
+                </VBox>
+
+                <!-- Batch Selection -->
+                <VBox spacing="3">
+                    <Label text="Batch *" styleClass="field-label" />
+                    <ComboBox fx:id="batchCombo" styleClass="combo-field" promptText="Select batch..." />
+                </VBox>
+
+                <!-- Day of Week Selection -->
+                <VBox spacing="3">
+                    <Label text="Day of Week *" styleClass="field-label" />
+                    <ComboBox fx:id="dayOfWeekCombo" styleClass="combo-field" promptText="Select day..." />
+                </VBox>
+
+                <!-- Start Time Selection -->
+                <VBox spacing="3">
+                    <Label text="Start Time *" styleClass="field-label" />
+                    <ComboBox fx:id="startTimeCombo" styleClass="combo-field" promptText="Select start time..." />
+                </VBox>
+
+                <!-- End Time Selection -->
+                <VBox spacing="3">
+                    <Label text="End Time *" styleClass="field-label" />
+                    <ComboBox fx:id="endTimeCombo" styleClass="combo-field" promptText="Select end time..." />
+                </VBox>
+
+                <!-- Type Selection -->
+                <VBox spacing="3">
+                    <Label text="Type *" styleClass="field-label" />
+                    <ComboBox fx:id="typeCombo" styleClass="combo-field" promptText="Select type..." />
+                </VBox>
+
+                <!-- Message Label -->
+                <Label fx:id="messageLabel" text="" styleClass="message-label" wrapText="true" />
+
+                <!-- Buttons -->
+                <HBox spacing="12" alignment="CENTER">
+                    <padding>
+                        <Insets top="8" />
+                    </padding>
+                    <Button fx:id="saveBtn" text="Update" styleClass="btn-primary" onAction="#handleUpdateSpecialSchedule" />
+                    <Button fx:id="cancelBtn" text="Cancel" styleClass="btn-secondary" onAction="#handleCancel" />
+                </HBox>
+            </VBox>
+        </ScrollPane>
+    </StackPane>
+</AnchorPane>
+

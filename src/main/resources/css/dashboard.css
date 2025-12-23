@@ -127,3 +127,19 @@
     -fx-alignment: center;
     -fx-max-width: 190;
 }
+
+.footer {
+    -fx-background-color: #0d47a1;
+    -fx-padding: 5px;
+    -fx-border-color: #1a237e;
+    -fx-border-width: 2px 0 0 0;
+    -fx-border-style: solid;
+}
+
+.footer-text {
+    -fx-font-size: 12px;
+    -fx-text-fill: #ffffff;
+    -fx-font-family: "Segoe UI", "Roboto", "Arial", sans-serif;
+    -fx-padding: 5px;
+    -fx-alignment: center;
+}

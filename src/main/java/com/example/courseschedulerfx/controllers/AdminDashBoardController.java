@@ -35,8 +35,9 @@ public class AdminDashBoardController {
             VBox.setVgrow(homeContent, Priority.ALWAYS);
 
         } catch (Exception e) {
-            System.err.println("Error loading home page: " + e.getMessage());
+
             e.printStackTrace();
         }
     }
 }
+

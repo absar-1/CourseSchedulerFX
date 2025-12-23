@@ -9,6 +9,11 @@ public class Department {
         this.departmentName = departmentName;
     }
 
+    // Constructor for creating new departments
+    public Department(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
     public int getDepartmentID() {
         return departmentID;
     }

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.EditDepartmentController"
+            prefHeight="400.0" prefWidth="500.0"
+            styleClass="anchor-pane"
+            stylesheets="@../css/department_form.css">
+
+    <StackPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               styleClass="stack-pane">
+
+        <VBox spacing="8" styleClass="form-card">
+            <padding>
+                <Insets top="20" left="25" right="25" bottom="20" />
+            </padding>
+
+            <!-- Title -->
+            <Label text="Edit Department" styleClass="form-title" />
+
+            <!-- Department Name Field -->
+            <VBox spacing="3">
+                <Label text="Department Name" styleClass="field-label" />
+                <TextField fx:id="nameField" promptText="Enter department name" styleClass="text-field" />
+            </VBox>
+
+            <!-- Message Label -->
+            <Label fx:id="messageLabel" text="" styleClass="message-label" wrapText="true" />
+
+            <!-- Buttons -->
+            <HBox spacing="12" alignment="CENTER">
+                <padding>
+                    <Insets top="25" />
+                </padding>
+                <Button fx:id="saveBtn" text="Update" styleClass="btn-primary" onAction="#handleSave" />
+                <Button fx:id="cancelBtn" text="Cancel" styleClass="btn-secondary" onAction="#handleCancel" />
+            </HBox>
+        </VBox>
+    </StackPane>
+</AnchorPane>
+

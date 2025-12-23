@@ -48,6 +48,18 @@ public class HomeController {
     @FXML
     private VBox adminCard;
 
+    @FXML
+    private VBox teacherCard;
+
+    @FXML
+    private VBox courseCard;
+
+    @FXML
+    private VBox departmentCard;
+
+    @FXML
+    private VBox classroomCard;
+
     private final String[] headlines = {
         "[INFO] Welcome to Course Scheduler - Manage your courses efficiently and stay organized!",
         "[SYSTEM] Stay organized with our advanced scheduling system - Plan ahead for success!",
@@ -78,9 +90,6 @@ public class HomeController {
 
         // Load database data asynchronously
         loadDataAsync();
-
-        // Load admin count separately
-        loadAdminCount();
     }
 
     private void loadDataAsync() {
@@ -88,16 +97,16 @@ public class HomeController {
 
         // Check if cache is valid
         if (cache.isCacheValid()) {
-            System.out.println("Loading data from cache (valid for " + cache.getCacheRemainingTime() + " seconds)");
+
             // Load from cache immediately
             updateUIWithData(cache.getTeachers(), cache.getCourses(),
                             cache.getDepartments(), cache.getClassrooms(),
-                            cache.getSpecialSchedules());
+                            cache.getAdmins(), cache.getSpecialSchedules());
             return;
         }
 
         // Cache is invalid, fetch from database
-        System.out.println("Cache expired or empty, fetching from database...");
+
         Task<HomeData> dataTask = new Task<>() {
             @Override
             protected HomeData call() {
@@ -106,9 +115,10 @@ public class HomeController {
                 int courses = CourseDAO.getCourseCount();
                 int departments = DepartmentDAO.getTotalDepartments();
                 int classrooms = ClassRoomDAO.getTotalClassRooms();
+                int admins = AdminDAO.countAdmins();
                 Stackk<SpecialSchedule> specialSchedules = SpecialScheduleDAO.getRecentSpecialSchedules();
 
-                return new HomeData(teachers, courses, departments, classrooms, specialSchedules);
+                return new HomeData(teachers, courses, departments, classrooms, admins, specialSchedules);
             }
         };
 
@@ -117,12 +127,12 @@ public class HomeController {
 
             // Store in cache for future use
             cache.setCache(data.teachers, data.courses, data.departments,
-                          data.classrooms, data.specialSchedules);
+                          data.classrooms, data.admins, data.specialSchedules);
 
             // Update UI
             updateUIWithData(data.teachers, data.courses, data.departments,
-                            data.classrooms, data.specialSchedules);
-            System.out.println("Data cached and UI updated");
+                            data.classrooms, data.admins, data.specialSchedules);
+
         });
 
         dataTask.setOnFailed(event -> {
@@ -131,7 +141,8 @@ public class HomeController {
             totalCoursesLabel.setText("0");
             totalDepartmentsLabel.setText("0");
             totalClassroomsLabel.setText("0");
-            System.err.println("Error loading home data: " + dataTask.getException().getMessage());
+            totalAdminsLabel.setText("0");
+
         });
 
         Thread thread = new Thread(dataTask);
@@ -140,21 +151,22 @@ public class HomeController {
     }
 
     private void updateUIWithData(int teachers, int courses, int departments,
-                                  int classrooms, Stackk<SpecialSchedule> specialSchedules) {
+                                  int classrooms, int admins, Stackk<SpecialSchedule> specialSchedules) {
         // Update UI on JavaFX thread if not already on it
         if (Platform.isFxApplicationThread()) {
-            performUIUpdate(teachers, courses, departments, classrooms, specialSchedules);
+            performUIUpdate(teachers, courses, departments, classrooms, admins, specialSchedules);
         } else {
-            Platform.runLater(() -> performUIUpdate(teachers, courses, departments, classrooms, specialSchedules));
+            Platform.runLater(() -> performUIUpdate(teachers, courses, departments, classrooms, admins, specialSchedules));
         }
     }
 
     private void performUIUpdate(int teachers, int courses, int departments,
-                                 int classrooms, Stackk<SpecialSchedule> specialSchedules) {
+                                 int classrooms, int admins, Stackk<SpecialSchedule> specialSchedules) {
         totalTeachersLabel.setText(String.valueOf(teachers));
         totalCoursesLabel.setText(String.valueOf(courses));
         totalDepartmentsLabel.setText(String.valueOf(departments));
         totalClassroomsLabel.setText(String.valueOf(classrooms));
+        totalAdminsLabel.setText(String.valueOf(admins));
 
         // Load headlines asynchronously in background
         loadHeadlinesAsync(specialSchedules);
@@ -176,14 +188,14 @@ public class HomeController {
         headlineTask.setOnSucceeded(event -> {
             String finalHeadline = headlineTask.getValue();
             headlineLabel.setText(finalHeadline);
-            System.out.println("Headlines loaded from stack");
+
         });
 
         headlineTask.setOnFailed(event -> {
             // Fallback to default headlines if error occurs
             String allHeadlines = String.join("     |     ", headlines);
             headlineLabel.setText("Welcome to the Course Scheduler     |     " + allHeadlines);
-            System.err.println("Error loading headlines: " + headlineTask.getException().getMessage());
+
         });
 
         Thread thread = new Thread(headlineTask);
@@ -197,13 +209,15 @@ public class HomeController {
         final int courses;
         final int departments;
         final int classrooms;
+        final int admins;
         final Stackk<SpecialSchedule> specialSchedules;
 
-        HomeData(int teachers, int courses, int departments, int classrooms, Stackk<SpecialSchedule> specialSchedules) {
+        HomeData(int teachers, int courses, int departments, int classrooms, int admins, Stackk<SpecialSchedule> specialSchedules) {
             this.teachers = teachers;
             this.courses = courses;
             this.departments = departments;
             this.classrooms = classrooms;
+            this.admins = admins;
             this.specialSchedules = specialSchedules;
         }
     }
@@ -315,6 +329,30 @@ public class HomeController {
 
     @FXML
     private void handleAdminCardClick(MouseEvent event) {
+        loadView("/fxml/user_management.fxml");
+    }
+
+    @FXML
+    private void handleTeacherCardClick(MouseEvent event) {
+        loadView("/fxml/user_management.fxml");
+    }
+
+    @FXML
+    private void handleCourseCardClick(MouseEvent event) {
+        loadView("/fxml/department_management.fxml");
+    }
+
+    @FXML
+    private void handleDepartmentCardClick(MouseEvent event) {
+        loadView("/fxml/department_management.fxml");
+    }
+
+    @FXML
+    private void handleClassroomCardClick(MouseEvent event) {
+        loadView("/fxml/schedule_management.fxml");
+    }
+
+    private void loadView(String fxmlPath) {
         try {
             // Get the parent VBox (mainContainer) from AdminDashboardController
             VBox parentContainer = (VBox) adminCard.getScene().lookup("#mainContainer");
@@ -331,8 +369,8 @@ public class HomeController {
             }
 
             if (parentContainer != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/user_management.fxml"));
-                Parent userManagementContent = loader.load();
+                FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
+                Parent content = loader.load();
 
                 // Remove existing content (keep header at index 0)
                 if (parentContainer.getChildren().size() > 1) {
@@ -340,39 +378,15 @@ public class HomeController {
                 }
 
                 // Add user management content
-                parentContainer.getChildren().add(userManagementContent);
-                VBox.setVgrow(userManagementContent, Priority.ALWAYS);
+                parentContainer.getChildren().add(content);
+                VBox.setVgrow(content, Priority.ALWAYS);
             } else {
-                System.err.println("Could not find mainContainer");
+
             }
 
         } catch (Exception e) {
-            System.err.println("Error loading user management: " + e.getMessage());
+
             e.printStackTrace();
         }
     }
-
-    // Load admin count asynchronously
-    public void loadAdminCount() {
-        Task<Integer> task = new Task<>() {
-            @Override
-            protected Integer call() {
-                return AdminDAO.countAdmins();
-            }
-        };
-
-        task.setOnSucceeded(event -> {
-            int count = task.getValue();
-            Platform.runLater(() -> setTotalAdmins(count));
-        });
-
-        Thread thread = new Thread(task);
-        thread.setDaemon(true);
-        thread.start();
-    }
 }
-
-
-
-
-

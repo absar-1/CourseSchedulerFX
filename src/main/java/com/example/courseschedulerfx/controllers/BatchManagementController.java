@@ -72,6 +72,11 @@ public class BatchManagementController {
         batchTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setupTableColumns();
         loadBatchDataAsync();
+
+        // Setup search functionality
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterData(newValue);
+        });
     }
 
     private void setupTableColumns() {
@@ -284,26 +289,6 @@ public class BatchManagementController {
     }
 
     @FXML
-    private void handleSearch() {
-        String searchText = searchField.getText().toLowerCase().trim();
-
-        if (searchText.isEmpty()) {
-            filteredList.setAll(batchList);
-        } else {
-            filteredList.clear();
-            for (Batch batch : batchList) {
-                if (batch.getBatchName().toLowerCase().contains(searchText) ||
-                    String.valueOf(batch.getYearOfAdmission()).contains(searchText) ||
-                    batch.getDepartment().getDepartmentName().toLowerCase().contains(searchText)) {
-                    filteredList.add(batch);
-                }
-            }
-        }
-        updateCount();
-        statusLabel.setText("Search completed");
-    }
-
-    @FXML
     private void handleRefresh() {
         searchField.clear();
         refreshData();
@@ -333,5 +318,22 @@ public class BatchManagementController {
 
         alert.showAndWait();
     }
-}
 
+    private void filterData(String searchText) {
+        filteredList.clear();
+        if (searchText == null || searchText.isEmpty()) {
+            filteredList.addAll(batchList);
+        } else {
+            String lowerCaseFilter = searchText.toLowerCase();
+            for (Batch batch : batchList) {
+                if (batch.getBatchName().toLowerCase().contains(lowerCaseFilter) ||
+                    String.valueOf(batch.getYearOfAdmission()).contains(lowerCaseFilter) ||
+                    batch.getDepartment().getDepartmentName().toLowerCase().contains(lowerCaseFilter)) {
+                    filteredList.add(batch);
+                }
+            }
+        }
+        batchTable.setItems(filteredList);
+        updateCount();
+    }
+}

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.AddClassRoomController"
+            prefHeight="520.0" prefWidth="520.0"
+            styleClass="anchor-pane"
+            stylesheets="@../css/classroom_form.css">
+
+    <StackPane AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+               AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"
+               styleClass="stack-pane">
+
+        <VBox spacing="8" styleClass="form-card">
+            <padding>
+                <Insets top="20" left="25" right="25" bottom="20" />
+            </padding>
+
+            <!-- Title -->
+            <Label text="Add New Classroom" styleClass="form-title" />
+
+            <!-- Classroom Name Field -->
+            <VBox spacing="3">
+                <Label text="Classroom Name" styleClass="field-label" />
+                <TextField fx:id="roomNameField" promptText="e.g., Room A101" styleClass="text-field" />
+            </VBox>
+
+            <!-- Capacity Field -->
+            <VBox spacing="3">
+                <Label text="Capacity" styleClass="field-label" />
+                <Spinner fx:id="capacitySpinner" styleClass="spinner-field" />
+            </VBox>
+
+            <!-- Message Label -->
+            <Label fx:id="messageLabel" text="" styleClass="message-label" wrapText="true" />
+
+            <!-- Buttons -->
+            <HBox spacing="12" alignment="CENTER">
+                <padding>
+                    <Insets top="8" />
+                </padding>
+                <Button fx:id="saveBtn" text="Save" styleClass="btn-primary" onAction="#handleSave" />
+                <Button fx:id="cancelBtn" text="Cancel" styleClass="btn-secondary" onAction="#handleCancel" />
+            </HBox>
+        </VBox>
+    </StackPane>
+</AnchorPane>
+

@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.scene.image.Image;
 import com.example.courseschedulerfx.utils.WindowManager;
 
 public class Main extends Application {
@@ -25,6 +26,17 @@ public class Main extends Application {
         
         primaryStage.setTitle("Login");
         primaryStage.setScene(scene);
+
+        // Set application icon (use the same logo as the app)
+        try {
+            var iconStream = getClass().getResourceAsStream("/images/logo.png");
+            if (iconStream != null) {
+                Image appIcon = new Image(iconStream);
+                primaryStage.getIcons().add(appIcon);
+            }
+        } catch (Exception ignored) {
+            // If icon fails to load, proceed without throwing — app still works
+        }
 
         // Apply normal window size for login (not maximized)
         WindowManager.applyNormalWindow(primaryStage, 800, 600);

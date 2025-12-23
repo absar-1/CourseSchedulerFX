@@ -4,88 +4,99 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 
-<ScrollPane xmlns="http://javafx.com/javafx/17"
+<BorderPane xmlns="http://javafx.com/javafx/17"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.example.courseschedulerfx.controllers.HomeController"
             prefHeight="400.0" prefWidth="600.0"
-            styleClass="home-scroll-pane"
-            fitToWidth="true"
             stylesheets="@../css/home.css">
 
-    <VBox spacing="0" styleClass="home-content">
-        <!-- Headline Pane with Scrolling Animation -->
-        <Pane fx:id="headlinePane" styleClass="headline-pane" VBox.vgrow="NEVER" style="-fx-clip-to-outline: true; -fx-alignment: center;">
-            <Label fx:id="headlineLabel" styleClass="headline-label" />
-        </Pane>
+    <center>
+        <ScrollPane styleClass="home-scroll-pane" fitToWidth="true">
+            <VBox spacing="0" styleClass="home-content">
+                <!-- Headline Pane with Scrolling Animation -->
+                <Pane fx:id="headlinePane" styleClass="headline-pane" VBox.vgrow="NEVER" style="-fx-clip-to-outline: true; -fx-alignment: center;">
+                    <Label fx:id="headlineLabel" styleClass="headline-label" />
+                </Pane>
 
-        <!-- Main Content Container with padding -->
-        <VBox spacing="20" styleClass="home-content-inner">
-            <padding>
-                <Insets top="30" left="30" right="30" bottom="30" />
-            </padding>
+                <!-- Main Content Container with padding -->
+                <VBox spacing="20" styleClass="home-content-inner" alignment="CENTER">
+                    <padding>
+                        <Insets top="30" left="30" right="30" bottom="30" />
+                    </padding>
 
-            <!-- Title -->
-            <Label text="Dashboard Overview" styleClass="dashboard-title" />
+                    <!-- Title -->
+                    <Label text="Dashboard Overview" styleClass="dashboard-title" />
 
-        <!-- Cards Container - Grid Layout -->
-        <HBox spacing="20" prefHeight="250">
-            <!-- Teachers Card -->
-            <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
-                <padding>
-                    <Insets top="20" right="20" bottom="20" left="20" />
-                </padding>
-                <Label text="👤" styleClass="card-icon" />
-                <Label text="Total Teachers" styleClass="card-title" />
-                <Label fx:id="totalTeachersLabel" text="0" styleClass="card-value" />
-                <Label text="Active instructors" styleClass="card-subtitle" />
+                <!-- Cards Container - Grid Layout -->
+                <HBox spacing="20" prefHeight="250" alignment="CENTER">
+                    <!-- Teachers Card -->
+                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20" />
+                        </padding>
+                        <Label text="👤" styleClass="card-icon" />
+                        <Label text="Total Teachers" styleClass="card-title" />
+                        <Label fx:id="totalTeachersLabel" text="0" styleClass="card-value" />
+                        <Label text="Active instructors" styleClass="card-subtitle" />
+                    </VBox>
+
+                    <!-- Courses Card -->
+                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20" />
+                        </padding>
+                        <Label text="📖" styleClass="card-icon" />
+                        <Label text="Total Courses" styleClass="card-title" />
+                        <Label fx:id="totalCoursesLabel" text="0" styleClass="card-value" />
+                        <Label text="Scheduled courses" styleClass="card-subtitle" />
+                    </VBox>
+
+                    <!-- Departments Card -->
+                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20" />
+                        </padding>
+                        <Label text="🏢" styleClass="card-icon" />
+                        <Label text="Total Departments" styleClass="card-title" />
+                        <Label fx:id="totalDepartmentsLabel" text="0" styleClass="card-value" />
+                        <Label text="Active departments" styleClass="card-subtitle" />
+                    </VBox>
+
+                    <!-- Classrooms Card -->
+                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20" />
+                        </padding>
+                        <Label text="🚪" styleClass="card-icon" />
+                        <Label text="Total Classrooms" styleClass="card-title" />
+                        <Label fx:id="totalClassroomsLabel" text="0" styleClass="card-value" />
+                        <Label text="Available rooms" styleClass="card-subtitle" />
+                    </VBox>
+
+                    <!-- Admins Card - Clickable for User Management -->
+                    <VBox fx:id="adminCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleAdminCardClick">
+                        <padding>
+                            <Insets top="20" right="20" bottom="20" left="20" />
+                        </padding>
+                        <Label text="🔐" styleClass="card-icon" />
+                        <Label text="Administrators" styleClass="card-title" />
+                        <Label fx:id="totalAdminsLabel" text="0" styleClass="card-value" />
+                        <Label text="Click to manage" styleClass="card-subtitle" />
+                    </VBox>
+                </HBox>
+                </VBox>
             </VBox>
+        </ScrollPane>
+    </center>
 
-            <!-- Courses Card -->
-            <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
-                <padding>
-                    <Insets top="20" right="20" bottom="20" left="20" />
-                </padding>
-                <Label text="📖" styleClass="card-icon" />
-                <Label text="Total Courses" styleClass="card-title" />
-                <Label fx:id="totalCoursesLabel" text="0" styleClass="card-value" />
-                <Label text="Scheduled courses" styleClass="card-subtitle" />
-            </VBox>
-
-            <!-- Departments Card -->
-            <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
-                <padding>
-                    <Insets top="20" right="20" bottom="20" left="20" />
-                </padding>
-                <Label text="🏢" styleClass="card-icon" />
-                <Label text="Total Departments" styleClass="card-title" />
-                <Label fx:id="totalDepartmentsLabel" text="0" styleClass="card-value" />
-                <Label text="Active departments" styleClass="card-subtitle" />
-            </VBox>
-
-            <!-- Classrooms Card -->
-            <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
-                <padding>
-                    <Insets top="20" right="20" bottom="20" left="20" />
-                </padding>
-                <Label text="🚪" styleClass="card-icon" />
-                <Label text="Total Classrooms" styleClass="card-title" />
-                <Label fx:id="totalClassroomsLabel" text="0" styleClass="card-value" />
-                <Label text="Available rooms" styleClass="card-subtitle" />
-            </VBox>
-
-            <!-- Admins Card - Clickable for User Management -->
-            <VBox fx:id="adminCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleAdminCardClick">
-                <padding>
-                    <Insets top="20" right="20" bottom="20" left="20" />
-                </padding>
-                <Label text="🔐" styleClass="card-icon" />
-                <Label text="Administrators" styleClass="card-title" />
-                <Label fx:id="totalAdminsLabel" text="0" styleClass="card-value" />
-                <Label text="Click to manage" styleClass="card-subtitle" />
-            </VBox>
+    <bottom>
+        <!-- Footer -->
+        <HBox styleClass="footer">
+            <Label text="Course Scheduler. All rights reserved." styleClass="footer-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="📋 Course Scheduler - Version 1.0" styleClass="footer-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="👨‍💻 Developed by Absar, Hateem, Hussain and Hamza" styleClass="footer-text" />
         </HBox>
-        </VBox>
-    </VBox>
-</ScrollPane>
-
-
+    </bottom>
+</BorderPane>
