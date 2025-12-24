@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.EditScheduleController"
+            prefHeight="700.0" prefWidth="600.0"
+            styleClass="anchor-pane">
+
+    <StackPane AnchorPane.topAnchor="0" AnchorPane.bottomAnchor="0" AnchorPane.leftAnchor="0" AnchorPane.rightAnchor="0"
+               styleClass="stack-pane">
+        <VBox styleClass="form-card" spacing="2">
+            <Label text="📅 Edit Schedule" styleClass="form-title" />
+
+            <!-- Day Selection -->
+            <VBox spacing="2">
+                <Label text="Day of Week *" styleClass="field-label" />
+                <ComboBox fx:id="dayCombo" styleClass="combo-field" promptText="Select day..." />
+            </VBox>
+
+            <!-- Time Slot Selection -->
+            <VBox spacing="2">
+                <Label text="Time Slot *" styleClass="field-label" />
+                <ComboBox fx:id="slotCombo" styleClass="combo-field" promptText="Select time slot..." />
+            </VBox>
+
+            <!-- Course Selection -->
+            <VBox spacing="2">
+                <Label text="Course *" styleClass="field-label" />
+                <ComboBox fx:id="courseCombo" styleClass="combo-field" promptText="Select course..." />
+            </VBox>
+
+            <!-- Teacher Selection -->
+            <VBox spacing="2">
+                <Label text="Teacher *" styleClass="field-label" />
+                <ComboBox fx:id="teacherCombo" styleClass="combo-field" promptText="Select teacher..." />
+            </VBox>
+
+            <!-- Batch Selection -->
+            <VBox spacing="2">
+                <Label text="Batch *" styleClass="field-label" />
+                <ComboBox fx:id="batchCombo" styleClass="combo-field" promptText="Select batch..." />
+            </VBox>
+
+            <!-- Room Selection -->
+            <VBox spacing="2">
+                <Label text="Classroom *" styleClass="field-label" />
+                <ComboBox fx:id="roomCombo" styleClass="combo-field" promptText="Select classroom..." />
+            </VBox>
+
+            <!-- Message Label -->
+            <Label fx:id="messageLabel" styleClass="message-label" wrapText="true" textAlignment="CENTER" />
+
+            <!-- Buttons -->
+            <HBox spacing="8" alignment="CENTER">
+                <Button text="Update" styleClass="btn-primary" onAction="#handleUpdateSchedule" />
+                <Button text="Cancel" styleClass="btn-secondary" onAction="#handleCancel" />
+            </HBox>
+        </VBox>
+    </StackPane>
+</AnchorPane>
+

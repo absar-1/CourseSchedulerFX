@@ -19,6 +19,9 @@ public class DashboardController {
     private VBox batchesCard;
 
     @FXML
+    private VBox departmentsCard;
+
+    @FXML
     private VBox teachersCard;
 
     @FXML
@@ -33,16 +36,17 @@ public class DashboardController {
     @FXML
     private VBox viewScheduleCard;
 
+    @FXML
+    private VBox createSpecialScheduleCard;
+
 
     @FXML
     public void initialize() {
-        System.out.println("Dashboard initialized successfully");
     }
 
     // User Management
     @FXML
     public void onAddAdminClick() {
-        System.out.println("Manage Admins clicked");
         navigateToUserManagement();
     }
 
@@ -75,14 +79,11 @@ public class DashboardController {
                 // Add user management content
                 parentContainer.getChildren().add(userManagementContent);
                 VBox.setVgrow(userManagementContent, Priority.ALWAYS);
-                System.out.println("User Management page loaded successfully");
             } else {
-                System.err.println("Could not find mainContainer");
                 showFeatureAlert("Error", "Could not navigate to User Management.");
             }
 
         } catch (Exception e) {
-            System.err.println("Error loading user management: " + e.getMessage());
             e.printStackTrace();
             showFeatureAlert("Error", "Failed to load User Management: " + e.getMessage());
         }
@@ -92,63 +93,11 @@ public class DashboardController {
 
     @FXML
     public void onCoursesClick() {
-        System.out.println("Courses clicked");
-        navigateToCourseManagement();
-    }
-
-
-
-    private void navigateToCourseManagement() {
-        try {
-            // Find the mainContainer from the scene
-            VBox parentContainer = (VBox) coursesCard.getScene().lookup("#mainContainer");
-
-            if (parentContainer == null) {
-                // Alternative: navigate up the scene graph to find the main container
-                javafx.scene.Node current = coursesCard.getParent();
-                while (current != null) {
-                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
-                        parentContainer = (VBox) current;
-                        break;
-                    }
-                    current = current.getParent();
-                }
-            }
-
-            if (parentContainer != null) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/course_management.fxml"));
-                Parent courseManagementContent = loader.load();
-
-                // Apply stylesheet to the loaded content
-                var courseCss = getClass().getResource("/css/course_management.css");
-                if (courseCss != null) {
-                    courseManagementContent.getStylesheets().add(courseCss.toExternalForm());
-                }
-
-                // Remove existing content (keep header at index 0)
-                if (parentContainer.getChildren().size() > 1) {
-                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
-                }
-
-                // Add course management content
-                parentContainer.getChildren().add(courseManagementContent);
-                VBox.setVgrow(courseManagementContent, Priority.ALWAYS);
-                System.out.println("Course Management page loaded successfully");
-            } else {
-                System.err.println("Could not find mainContainer");
-                showFeatureAlert("Error", "Could not navigate to Course Management.");
-            }
-
-        } catch (Exception e) {
-            System.err.println("Error loading course management: " + e.getMessage());
-            e.printStackTrace();
-            showFeatureAlert("Error", "Failed to load Course Management: " + e.getMessage());
-        }
+        showFeatureAlert("Courses", "Add and manage courses with credit hours.");
     }
 
     @FXML
     public void onBatchesClick() {
-        System.out.println("Batches clicked");
         navigateToBatchManagement();
     }
 
@@ -187,16 +136,64 @@ public class DashboardController {
                 // Add batch management content
                 parentContainer.getChildren().add(batchManagementContent);
                 VBox.setVgrow(batchManagementContent, Priority.ALWAYS);
-                System.out.println("Batch Management page loaded successfully");
             } else {
-                System.err.println("Could not find mainContainer");
                 showFeatureAlert("Error", "Could not navigate to Batch Management.");
             }
 
         } catch (Exception e) {
-            System.err.println("Error loading batch management: " + e.getMessage());
             e.printStackTrace();
             showFeatureAlert("Error", "Failed to load Batch Management: " + e.getMessage());
+        }
+    }
+
+    // Department Management
+    @FXML
+    public void onDepartmentsClick() {
+        navigateToDepartmentManagement();
+    }
+
+    private void navigateToDepartmentManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) departmentsCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = departmentsCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/department_management.fxml"));
+                Parent departmentManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var departmentCss = getClass().getResource("/css/department_management.css");
+                if (departmentCss != null) {
+                    departmentManagementContent.getStylesheets().add(departmentCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add department management content
+                parentContainer.getChildren().add(departmentManagementContent);
+                VBox.setVgrow(departmentManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Department Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Department Management: " + e.getMessage());
         }
     }
 
@@ -204,34 +201,214 @@ public class DashboardController {
     @FXML
     public void onTeachersClick() {
         showFeatureAlert("Teachers", "Manage faculty members and their department assignments.");
-        System.out.println("Teachers clicked");
     }
 
 
     // Facility Management
     @FXML
     public void onClassroomsClick() {
-        showFeatureAlert("Classrooms", "Manage classrooms and their seating capacities.");
-        System.out.println("Classrooms clicked");
+        navigateToClassroomManagement();
+    }
+
+    private void navigateToClassroomManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) classroomsCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = classroomsCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/classroom_management.fxml"));
+                Parent classroomManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var classroomCss = getClass().getResource("/css/classroom_management.css");
+                if (classroomCss != null) {
+                    classroomManagementContent.getStylesheets().add(classroomCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add classroom management content
+                parentContainer.getChildren().add(classroomManagementContent);
+                VBox.setVgrow(classroomManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Classroom Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Classroom Management: " + e.getMessage());
+        }
     }
 
     @FXML
     public void onClassSlotsClick() {
-        showFeatureAlert("Time Slots", "Configure class timing slots for scheduling.");
-        System.out.println("Class Slots clicked");
+        navigateToClassSlotManagement();
+    }
+
+    private void navigateToClassSlotManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) classSlotsCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = classSlotsCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/class_slot_management.fxml"));
+                Parent classSlotManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var classSlotCss = getClass().getResource("/css/class_slot_management.css");
+                if (classSlotCss != null) {
+                    classSlotManagementContent.getStylesheets().add(classSlotCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add class slot management content
+                parentContainer.getChildren().add(classSlotManagementContent);
+                VBox.setVgrow(classSlotManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Class Slot Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Class Slot Management: " + e.getMessage());
+        }
     }
 
     // Scheduling
     @FXML
     public void onCreateScheduleClick() {
-        showFeatureAlert("Create Schedule", "Create weekly class schedules for batches.");
-        System.out.println("Create Schedule clicked");
+        navigateToScheduleManagement();
     }
 
     @FXML
     public void onViewScheduleClick() {
-        showFeatureAlert("View Schedule", "View and manage existing class schedules.");
-        System.out.println("View Schedule clicked");
+        navigateToScheduleManagement();
+    }
+
+    @FXML
+    public void onCreateSpecialScheduleClick() {
+        navigateToSpecialScheduleManagement();
+    }
+
+    private void navigateToScheduleManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) createScheduleCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = createScheduleCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/schedule_management.fxml"));
+                Parent scheduleManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var scheduleCss = getClass().getResource("/css/schedule_management.css");
+                if (scheduleCss != null) {
+                    scheduleManagementContent.getStylesheets().add(scheduleCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add schedule management content
+                parentContainer.getChildren().add(scheduleManagementContent);
+                VBox.setVgrow(scheduleManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Schedule Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Schedule Management: " + e.getMessage());
+        }
+    }
+
+    private void navigateToSpecialScheduleManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) createSpecialScheduleCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = createSpecialScheduleCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/special_schedule_management.fxml"));
+                Parent specialScheduleManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var specialScheduleCss = getClass().getResource("/css/special_schedule_management.css");
+                if (specialScheduleCss != null) {
+                    specialScheduleManagementContent.getStylesheets().add(specialScheduleCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add special schedule management content
+                parentContainer.getChildren().add(specialScheduleManagementContent);
+                VBox.setVgrow(specialScheduleManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Special Schedule Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Special Schedule Management: " + e.getMessage());
+        }
     }
 
 
@@ -250,3 +427,5 @@ public class DashboardController {
         alert.showAndWait();
     }
 }
+
+

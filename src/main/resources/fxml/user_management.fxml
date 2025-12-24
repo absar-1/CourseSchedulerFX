@@ -25,7 +25,6 @@
             <!-- Search and Filter Bar in Header -->
             <HBox spacing="8" alignment="CENTER_RIGHT" styleClass="header-search-bar">
                 <TextField fx:id="searchField" promptText="🔍 Search by name or email..." styleClass="search-field" prefWidth="280" />
-                <Button text="Search" styleClass="search-btn" onAction="#handleSearch" />
                 <Button text="🔄 Refresh" styleClass="refresh-btn" onAction="#handleRefresh" />
             </HBox>
 

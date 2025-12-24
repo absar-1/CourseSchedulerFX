@@ -10,6 +10,7 @@ public class HomeDataCache {
     private Integer cachedCourses;
     private Integer cachedDepartments;
     private Integer cachedClassrooms;
+    private Integer cachedAdmins;
     private Stackk<SpecialSchedule> cachedSpecialSchedules;
     private long lastCacheTime;
     private static final long CACHE_VALIDITY_MS = 5 * 60 * 1000;
@@ -27,19 +28,21 @@ public class HomeDataCache {
 
     public boolean isCacheValid() {
         if (cachedTeachers == null || cachedCourses == null ||
-            cachedDepartments == null || cachedClassrooms == null) {
+            cachedDepartments == null || cachedClassrooms == null ||
+            cachedAdmins == null) {
             return false;
         }
         long currentTime = System.currentTimeMillis();
         return (currentTime - lastCacheTime) < CACHE_VALIDITY_MS;
     }
 
-    public void setCache(int teachers, int courses, int departments, int classrooms,
+    public void setCache(int teachers, int courses, int departments, int classrooms, int admins,
                         Stackk<SpecialSchedule> specialSchedules) {
         this.cachedTeachers = teachers;
         this.cachedCourses = courses;
         this.cachedDepartments = departments;
         this.cachedClassrooms = classrooms;
+        this.cachedAdmins = admins;
         this.cachedSpecialSchedules = copyStack(specialSchedules);
         this.lastCacheTime = System.currentTimeMillis();
     }
@@ -88,6 +91,10 @@ public class HomeDataCache {
         return cachedClassrooms;
     }
 
+    public Integer getAdmins() {
+        return cachedAdmins;
+    }
+
     public Stackk<SpecialSchedule> getSpecialSchedules() {
         return cachedSpecialSchedules;
     }
@@ -97,6 +104,7 @@ public class HomeDataCache {
         cachedCourses = null;
         cachedDepartments = null;
         cachedClassrooms = null;
+        cachedAdmins = null;
         cachedSpecialSchedules = null;
         lastCacheTime = 0;
     }
@@ -110,4 +118,3 @@ public class HomeDataCache {
         return remaining / 1000;
     }
 }
-

@@ -47,7 +47,7 @@ public class DepartmentDAO {
     // get all departments
     public static List<Department> getAllDepartments() {
         List<Department> departments = new ArrayList<>();
-        String query = "SELECT * FROM Departments ORDER BY department_id";
+        String query = "SELECT * FROM departments ORDER BY department_id";
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(query)) {
             ResultSet rs = ps.executeQuery();
@@ -62,36 +62,5 @@ public class DepartmentDAO {
             throw new RuntimeException(e);
         }
         return departments;
-    }
-
-    // get all department names
-    public static List<String> getAllDepartmentNames() {
-        List<String> departments = new ArrayList<>();
-            String query = "SELECT department_name FROM Departments ORDER BY department_id";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-                departments.add(rs.getString("department_name"));
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return departments;
-    }
-
-    public static int getDepartmentIdByName(String name) {
-        String query = "SELECT department_id FROM departments WHERE department_name = ?";
-        try (Connection conn = DBConnection.getConnection();
-             PreparedStatement ps = conn.prepareStatement(query)) {
-            ps.setString(1, name);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                return rs.getInt("department_id");
-            }
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-        return -1;
     }
 }

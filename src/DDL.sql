@@ -77,8 +77,7 @@ CREATE TABLE Schedules (
     room_id INT NOT NULL,
     slot_id INT NOT NULL,
     teacher_id INT NOT NULL,
-    is_scheduled BIT DEFAULT 0,
-    
+
     -- CRITICAL FIX: Use NO ACTION for batch to prevent cascade cycle
     FOREIGN KEY (course_id) REFERENCES Courses(course_id) ON DELETE NO ACTION,
     FOREIGN KEY (batch_id) REFERENCES Batches(batch_id) ON DELETE NO ACTION,

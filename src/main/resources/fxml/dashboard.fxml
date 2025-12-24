@@ -48,9 +48,19 @@
                         <padding>
                             <Insets top="0" right="0" bottom="0" left="0" />
                         </padding>
-                        <Label text="👁️" styleClass="feature-icon" />
+                        <Label text="📋" styleClass="feature-icon" />
                         <Label text="View Schedule" styleClass="feature-title" />
                         <Label text="View and manage existing schedules" styleClass="feature-description" />
+                    </VBox>
+
+                    <!-- Create Special Schedule Card -->
+                    <VBox fx:id="createSpecialScheduleCard" styleClass="feature-card" onMouseClicked="#onCreateSpecialScheduleClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="⚡" styleClass="feature-icon" />
+                        <Label text="Special Schedule" styleClass="feature-title" />
+                        <Label text="Manage makeup and extra classes" styleClass="feature-description" />
                     </VBox>
                 </HBox>
             </VBox>
@@ -98,6 +108,22 @@
                 </HBox>
             </VBox>
 
+            <!-- Section: Department Management -->
+            <VBox spacing="15" styleClass="dashboard-section">
+                <Label text="🏢 Department Management" styleClass="section-title" />
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <!-- Departments Card -->
+                    <VBox fx:id="departmentsCard" styleClass="feature-card" onMouseClicked="#onDepartmentsClick" alignment="CENTER">
+                        <padding>
+                            <Insets top="0" right="0" bottom="0" left="0" />
+                        </padding>
+                        <Label text="🏢" styleClass="feature-icon" />
+                        <Label text="Departments" styleClass="feature-title" />
+                        <Label text="Add, edit, and manage academic departments" styleClass="feature-description" />
+                    </VBox>
+                </HBox>
+            </VBox>
+
             <!-- Section: People Management -->
             <VBox spacing="15" styleClass="dashboard-section">
                 <Label text="👨‍🏫 People Management" styleClass="section-title" />
@@ -141,5 +167,18 @@
             </VBox>
 
         </VBox>
+
+        <!-- Footer - Only visible when scrolled to bottom -->
+        <HBox styleClass="footer" alignment="CENTER">
+            <padding>
+                <Insets top="30" left="40" right="40" bottom="20" />
+            </padding>
+            <Label text="© Course Scheduler. All rights reserved." styleClass="footer-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="📋 Course Scheduler - Version 1.0" styleClass="footer-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label text="👨‍💻 Developed by Absar, Hateem, Hussain and Hamza" styleClass="footer-text" />
+        </HBox>
+
     </VBox>
 </ScrollPane>

@@ -32,28 +32,23 @@ public class HeaderController {
     public void initialize() {
         if (userLabel != null) {
             userLabel.setText("Welcome Admin");
-        } else {
-            System.out.println("HeaderController: userLabel is null.");
         }
 
         try {
             Image logoImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logo.png")));
             logoIcon.setImage(logoImage);
         } catch (NullPointerException e) {
-            System.out.println("Logo image not found at /images/logo.png");
         }
 
         try {
             Image logoutImage = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/logout.png")));
             logoutIcon.setImage(logoutImage);
         } catch (NullPointerException e) {
-            System.out.println("Logout image not found at /images/logout.png");
         }
     }
 
     public void setUserLabel(String userName) {
         if (userLabel == null) {
-            System.out.println("HeaderController: userLabel is null; cannot set text.");
             return;
         }
         if (userName != null && !userName.isEmpty()) {
@@ -65,13 +60,11 @@ public class HeaderController {
 
     @FXML
     public void onLogoClick() {
-        System.out.println("Logo clicked - navigating to home");
         onHomeClick();
     }
 
     @FXML
     public void onHomeClick() {
-        System.out.println("Home clicked");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/home.fxml"));
             Parent homeContent = loader.load();
@@ -95,14 +88,9 @@ public class HeaderController {
 
                 mainContainer.getChildren().add(homeContent);
                 javafx.scene.layout.VBox.setVgrow(homeContent, javafx.scene.layout.Priority.ALWAYS);
-
-                System.out.println("Home page loaded successfully");
-            } else {
-                System.err.println("Could not find mainContainer VBox");
             }
 
         } catch (IOException e) {
-            System.err.println("Error loading home page: " + e.getMessage());
             e.printStackTrace();
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -113,9 +101,8 @@ public class HeaderController {
         }
     }
 
-@FXML
+    @FXML
     public void onDashboardClick() {
-        System.out.println("Dashboard clicked");
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/dashboard.fxml"));
             Parent dashboardContent = loader.load();
@@ -139,14 +126,9 @@ public class HeaderController {
 
                 mainContainer.getChildren().add(dashboardContent);
                 javafx.scene.layout.VBox.setVgrow(dashboardContent, javafx.scene.layout.Priority.ALWAYS);
-
-                System.out.println("Dashboard loaded successfully");
-            } else {
-                System.err.println("Could not find mainContainer VBox");
             }
 
         } catch (IOException e) {
-            System.err.println("Error loading dashboard: " + e.getMessage());
             e.printStackTrace();
 
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -195,11 +177,7 @@ public class HeaderController {
 
                 currentStage.show();
 
-
-                System.out.println("User logged out successfully.");
-
             } catch (Exception e) {
-                System.err.println("Error loading login page: " + e.getMessage());
                 e.printStackTrace();
             }
         }
@@ -217,3 +195,4 @@ public class HeaderController {
         return logoutIcon;
     }
 }
+

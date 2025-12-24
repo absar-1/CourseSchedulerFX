@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.DepartmentManagementController"
+            prefHeight="600.0" prefWidth="800.0"
+            styleClass="department-mgmt-border-pane">
+
+    <!-- Top Section with Header -->
+    <top>
+        <HBox styleClass="department-mgmt-header" alignment="CENTER_LEFT" spacing="15">
+            <padding>
+                <Insets top="15" left="30" right="30" bottom="15" />
+            </padding>
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="🏢 Department Management" styleClass="page-title" />
+                <Label text="Manage academic departments" styleClass="page-subtitle" />
+            </VBox>
+
+            <!-- Search and Filter Bar in Header -->
+            <HBox spacing="8" alignment="CENTER_RIGHT" styleClass="header-search-bar">
+                <TextField fx:id="searchField" promptText="🔍 Search departments..." styleClass="search-field" prefWidth="250" />
+                <Button text="🔄 Refresh" styleClass="refresh-btn" onAction="#handleRefresh" />
+            </HBox>
+
+            <Button fx:id="addDepartmentBtn" text="+ Add Department" styleClass="add-btn" onAction="#handleAddDepartment" />
+        </HBox>
+    </top>
+
+    <!-- Center Section with Dynamic Content -->
+    <center>
+        <StackPane styleClass="department-mgmt-main">
+            <VBox spacing="10" styleClass="department-mgmt-main">
+                <padding>
+                    <Insets top="10" left="30" right="30" bottom="10" />
+                </padding>
+
+                <!-- Department Table -->
+                <VBox styleClass="table-container" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="departmentTable" styleClass="department-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="idColumn" text="ID" minWidth="60" prefWidth="80" maxWidth="100" />
+                            <TableColumn fx:id="nameColumn" text="Department Name" minWidth="200" prefWidth="300" />
+                            <TableColumn fx:id="actionsColumn" text="Actions" minWidth="140" prefWidth="160" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No departments found" styleClass="table-placeholder" />
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Loading Indicator Overlay -->
+            <VBox fx:id="loadingOverlay" styleClass="loading-overlay" alignment="CENTER" spacing="15" visible="false" managed="false">
+                <ProgressIndicator fx:id="loadingIndicator" prefWidth="60" prefHeight="60" />
+                <Label text="Loading departments..." styleClass="loading-label" />
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- Bottom Section with Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets top="8" left="30" right="30" bottom="8" />
+            </padding>
+            <Label fx:id="statusLabel" text="Ready" styleClass="status-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="countLabel" text="Total: 0 departments" styleClass="count-text" />
+        </HBox>
+    </bottom>
+</BorderPane>
+

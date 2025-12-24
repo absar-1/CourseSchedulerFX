@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.SpecialScheduleManagementController"
+            prefHeight="700.0" prefWidth="1000.0"
+            styleClass="special-schedule-mgmt-border-pane"
+            stylesheets="@../css/special_schedule_management.css">
+
+    <!-- Top Section with Header -->
+    <top>
+        <HBox styleClass="special-schedule-mgmt-header" alignment="CENTER_LEFT" spacing="15">
+            <padding>
+                <Insets top="15" left="30" right="30" bottom="15" />
+            </padding>
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="📅 Special Schedule Management" styleClass="page-title" />
+                <Label text="Manage makeup and extra class schedules" styleClass="page-subtitle" />
+            </VBox>
+
+            <!-- Search and Filter Bar in Header -->
+            <HBox spacing="5" alignment="CENTER_RIGHT" styleClass="header-search-bar">
+                <TextField fx:id="searchField" promptText="🔍 Search by course, teacher, batch, type..." styleClass="search-field" prefWidth="350" />
+
+                <!-- Filter by Category -->
+                <ComboBox fx:id="filterCombo" styleClass="filter-combo-box" prefWidth="120" promptText="Filter..." />
+
+                <!-- Filter Value -->
+                <ComboBox fx:id="filterValueCombo" styleClass="filter-combo-box" prefWidth="120" promptText="Select..." />
+
+                <Button text="🔄 Refresh" styleClass="refresh-btn" onAction="#refreshData" />
+            </HBox>
+
+            <Button fx:id="addSpecialScheduleBtn" text="+ Add" styleClass="add-btn" onAction="#handleAddSchedule" />
+        </HBox>
+    </top>
+
+    <!-- Center Section with Dynamic Content -->
+    <center>
+        <StackPane styleClass="special-schedule-mgmt-main">
+            <VBox spacing="10" styleClass="special-schedule-mgmt-main">
+                <padding>
+                    <Insets top="10" left="30" right="30" bottom="10" />
+                </padding>
+
+                <!-- Special Schedule Table -->
+                <VBox styleClass="table-container" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="specialScheduleTable" styleClass="special-schedule-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="courseColumn" text="Course" minWidth="100" prefWidth="120" />
+                            <TableColumn fx:id="classroomColumn" text="Classroom" minWidth="80" prefWidth="95" />
+                            <TableColumn fx:id="teacherColumn" text="Teacher" minWidth="100" prefWidth="130" />
+                            <TableColumn fx:id="batchColumn" text="Batch" minWidth="80" prefWidth="100" />
+                            <TableColumn fx:id="dateColumn" text="Date" minWidth="90" prefWidth="110" />
+                            <TableColumn fx:id="dayColumn" text="Day" minWidth="70" prefWidth="85" />
+                            <TableColumn fx:id="timeColumn" text="Time" minWidth="110" prefWidth="130" />
+                            <TableColumn fx:id="typeColumn" text="Type" minWidth="60" prefWidth="80" />
+                            <TableColumn fx:id="actionsColumn" text="Actions" minWidth="140" prefWidth="160" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No special schedules found" styleClass="table-placeholder" />
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Loading Indicator Overlay -->
+            <VBox fx:id="loadingOverlay" styleClass="loading-overlay" alignment="CENTER" spacing="15" visible="false" managed="false">
+                <ProgressIndicator fx:id="loadingIndicator" prefWidth="60" prefHeight="60" />
+                <Label text="Loading special schedules..." styleClass="loading-label" />
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- Bottom Section with Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets top="8" left="30" right="30" bottom="8" />
+            </padding>
+            <Label fx:id="statusLabel" text="Ready" styleClass="status-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="countLabel" text="Total: 0" styleClass="count-text" />
+        </HBox>
+    </bottom>
+</BorderPane>
+

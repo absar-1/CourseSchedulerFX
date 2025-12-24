@@ -66,6 +66,11 @@ public class UserManagementController {
         adminTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
         setupTableColumns();
         loadAdminDataAsync();
+
+        // Setup search functionality
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            filterData(newValue);
+        });
     }
 
     private void setupTableColumns() {
@@ -284,25 +289,6 @@ public class UserManagementController {
     }
 
     @FXML
-    private void handleSearch() {
-        String searchText = searchField.getText().toLowerCase().trim();
-
-        if (searchText.isEmpty()) {
-            filteredList.setAll(adminList);
-        } else {
-            filteredList.clear();
-            for (Admin admin : adminList) {
-                if (admin.getAdminName().toLowerCase().contains(searchText) ||
-                    admin.getEmail().toLowerCase().contains(searchText)) {
-                    filteredList.add(admin);
-                }
-            }
-        }
-        updateCount();
-        statusLabel.setText("Search completed");
-    }
-
-    @FXML
     private void handleRefresh() {
         searchField.clear();
         refreshData();
@@ -332,5 +318,21 @@ public class UserManagementController {
 
         alert.showAndWait();
     }
-}
 
+    private void filterData(String searchText) {
+        filteredList.clear();
+        if (searchText == null || searchText.isEmpty()) {
+            filteredList.setAll(adminList);
+        } else {
+            String lowerCaseFilter = searchText.toLowerCase();
+            for (Admin admin : adminList) {
+                if (admin.getAdminName().toLowerCase().contains(lowerCaseFilter) ||
+                    admin.getEmail().toLowerCase().contains(lowerCaseFilter)) {
+                    filteredList.add(admin);
+                }
+            }
+        }
+        adminTable.setItems(filteredList);
+        updateCount();
+    }
+}

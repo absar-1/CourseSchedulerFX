@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.courseschedulerfx.controllers.ClassSlotManagementController"
+            prefHeight="600.0" prefWidth="800.0"
+            styleClass="slot-mgmt-border-pane">
+
+    <!-- Top Section with Header -->
+    <top>
+        <HBox styleClass="slot-mgmt-header" alignment="CENTER_LEFT" spacing="15">
+            <padding>
+                <Insets top="15" left="30" right="30" bottom="15" />
+            </padding>
+            <VBox spacing="3" HBox.hgrow="ALWAYS">
+                <Label text="⏰ Class Slot Management" styleClass="page-title" />
+                <Label text="Manage time slots for class scheduling" styleClass="page-subtitle" />
+            </VBox>
+
+            <!-- Search and Filter Bar in Header -->
+            <HBox spacing="8" alignment="CENTER_RIGHT" styleClass="header-search-bar">
+                <TextField fx:id="searchField" promptText="🔍 Search by time..." styleClass="search-field" prefWidth="250" />
+                <Button text="🔄 Refresh" styleClass="refresh-btn" onAction="#handleRefresh" />
+            </HBox>
+
+            <Button fx:id="addSlotBtn" text="+ Add Time Slot" styleClass="add-btn" onAction="#handleAddSlot" />
+        </HBox>
+    </top>
+
+    <!-- Center Section with Dynamic Content -->
+    <center>
+        <StackPane styleClass="slot-mgmt-main">
+            <VBox spacing="10" styleClass="slot-mgmt-main">
+                <padding>
+                    <Insets top="10" left="30" right="30" bottom="10" />
+                </padding>
+
+                <!-- Class Slot Table -->
+                <VBox styleClass="table-container" VBox.vgrow="ALWAYS">
+                    <TableView fx:id="slotTable" styleClass="slot-table" VBox.vgrow="ALWAYS">
+                        <columns>
+                            <TableColumn fx:id="idColumn" text="Slot ID" minWidth="70" prefWidth="90" maxWidth="110" />
+                            <TableColumn fx:id="startTimeColumn" text="Start Time" minWidth="100" prefWidth="180" />
+                            <TableColumn fx:id="endTimeColumn" text="End Time" minWidth="100" prefWidth="180" />
+                            <TableColumn fx:id="durationColumn" text="Duration" minWidth="80" prefWidth="120" />
+                            <TableColumn fx:id="actionsColumn" text="Actions" minWidth="140" prefWidth="160" />
+                        </columns>
+                        <placeholder>
+                            <Label text="No time slots found" styleClass="table-placeholder" />
+                        </placeholder>
+                    </TableView>
+                </VBox>
+            </VBox>
+
+            <!-- Loading Indicator Overlay -->
+            <VBox fx:id="loadingOverlay" styleClass="loading-overlay" alignment="CENTER" spacing="15" visible="false" managed="false">
+                <ProgressIndicator fx:id="loadingIndicator" prefWidth="60" prefHeight="60" />
+                <Label text="Loading time slots..." styleClass="loading-label" />
+            </VBox>
+        </StackPane>
+    </center>
+
+    <!-- Bottom Section with Status Bar -->
+    <bottom>
+        <HBox styleClass="status-bar" alignment="CENTER_LEFT" spacing="10">
+            <padding>
+                <Insets top="8" left="30" right="30" bottom="8" />
+            </padding>
+            <Label fx:id="statusLabel" text="Ready" styleClass="status-text" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="countLabel" text="Total: 0 slots" styleClass="count-text" />
+        </HBox>
+    </bottom>
+</BorderPane>

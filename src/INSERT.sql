@@ -310,50 +310,50 @@ PRINT 'Teacher-course assignments inserted:  42';
 -- ============================================
 -- 9. INSERT SCHEDULES (Regular Weekly Classes)
 -- ============================================
-INSERT INTO Schedules (day_of_week, course_id, batch_id, room_id, slot_id, teacher_id, is_scheduled) VALUES 
+INSERT INTO Schedules (day_of_week, course_id, batch_id, room_id, slot_id, teacher_id) VALUES
 -- MONDAY SCHEDULES
-('Monday', 1, 2, 1, 1, 1, 1),      -- Database Systems, CS 2022, Room 101, 8:00-9:30, Dr. Smith
-('Monday', 2, 3, 2, 2, 2, 1),      -- Data Structures, CS 2023, Room 102, 9:45-11:15, Dr. Johnson
-('Monday', 8, 6, 10, 3, 5, 1),     -- Digital Logic, EE 2022, Lab 101, 11:30-13:00, Dr. Brown
-('Monday', 13, 10, 15, 4, 8, 1),   -- Calculus I, Math 2022, Auditorium A, 13:30-15:00, Dr. Davis
-('Monday', 3, 1, 3, 5, 3, 1),      -- Computer Networks, CS 2021, Room 103, 15:15-16:45, Dr. Wilson
+('Monday', 1, 2, 1, 1, 1),      -- Database Systems, CS 2022, Room 101, 8:00-9:30, Dr. Smith
+('Monday', 2, 3, 2, 2, 2),      -- Data Structures, CS 2023, Room 102, 9:45-11:15, Dr. Johnson
+('Monday', 8, 6, 10, 3, 5),     -- Digital Logic, EE 2022, Lab 101, 11:30-13:00, Dr. Brown
+('Monday', 13, 10, 15, 4, 8),   -- Calculus I, Math 2022, Auditorium A, 13:30-15:00, Dr. Davis
+('Monday', 3, 1, 3, 5, 3),      -- Computer Networks, CS 2021, Room 103, 15:15-16:45, Dr. Wilson
 
 -- TUESDAY SCHEDULES
-('Tuesday', 1, 3, 1, 1, 1, 1),     -- Database Systems, CS 2023, Room 101, 8:00-9:30, Dr.  Smith
-('Tuesday', 5, 2, 4, 2, 2, 1),     -- Software Engineering, CS 2022, Room 201, 9:45-11:15, Dr. Johnson
-('Tuesday', 9, 5, 11, 7, 6, 1),    -- Circuit Analysis, EE 2021, Lab 102, 8:00-10:00, Dr. Martinez
-('Tuesday', 18, 13, 15, 4, 11, 1), -- Physics I, Physics 2022, Auditorium A, 13:30-15:00, Dr. Garcia
-('Tuesday', 21, 16, 5, 5, 13, 1),  -- Thermodynamics, Mech 2022, Room 202, 15:15-16:45, Dr. Rodriguez
+('Tuesday', 1, 3, 1, 1, 1),     -- Database Systems, CS 2023, Room 101, 8:00-9:30, Dr.  Smith
+('Tuesday', 5, 2, 4, 2, 2),     -- Software Engineering, CS 2022, Room 201, 9:45-11:15, Dr. Johnson
+('Tuesday', 9, 5, 11, 7, 6),    -- Circuit Analysis, EE 2021, Lab 102, 8:00-10:00, Dr. Martinez
+('Tuesday', 18, 13, 15, 4, 11), -- Physics I, Physics 2022, Auditorium A, 13:30-15:00, Dr. Garcia
+('Tuesday', 21, 16, 5, 5, 13),  -- Thermodynamics, Mech 2022, Room 202, 15:15-16:45, Dr. Rodriguez
 
 -- WEDNESDAY SCHEDULES
-('Wednesday', 2, 2, 2, 1, 1, 1),   -- Data Structures, CS 2022, Room 102, 8:00-9:30, Dr. Smith
-('Wednesday', 4, 1, 19, 7, 3, 1),  -- Operating Systems, CS 2021, Comp Lab 1, 8:00-10:00, Dr. Wilson
-('Wednesday', 15, 9, 6, 3, 8, 1),  -- Linear Algebra, Math 2021, Room 203, 11:30-13:00, Dr. Davis
-('Wednesday', 10, 7, 12, 8, 5, 1), -- Microprocessors, EE 2023, Lab 201, 10:15-12:15, Dr. Brown
-('Wednesday', 28, 23, 17, 4, 17, 1), -- Management, Business 2022, Seminar Hall 1, 13:30-15:00, Jackson
+('Wednesday', 2, 2, 2, 1, 1),   -- Data Structures, CS 2022, Room 102, 8:00-9:30, Dr. Smith
+('Wednesday', 4, 1, 19, 7, 3),  -- Operating Systems, CS 2021, Comp Lab 1, 8:00-10:00, Dr. Wilson
+('Wednesday', 15, 9, 6, 3, 8),  -- Linear Algebra, Math 2021, Room 203, 11:30-13:00, Dr. Davis
+('Wednesday', 10, 7, 12, 8, 5), -- Microprocessors, EE 2023, Lab 201, 10:15-12:15, Dr. Brown
+('Wednesday', 28, 23, 17, 4, 17), -- Management, Business 2022, Seminar Hall 1, 13:30-15:00, Jackson
 
 -- THURSDAY SCHEDULES
-('Thursday', 1, 1, 1, 2, 1, 1),    -- Database Systems, CS 2021, Room 101, 9:45-11:15, Dr. Smith
-('Thursday', 6, 3, 20, 3, 3, 1),   -- AI, CS 2023, Comp Lab 2, 11:30-13:00, Dr. Wilson
-('Thursday', 11, 6, 13, 9, 6, 1),  -- Signal Processing, EE 2022, Lab 202, 14:00-16:00, Dr. Martinez
-('Thursday', 19, 14, 15, 4, 12, 1), -- Physics II, Physics 2023, Auditorium A, 13:30-15:00, Dr. Martinez
-('Thursday', 26, 21, 14, 5, 16, 1), -- Organic Chemistry, Chem 2023, Lab 301, 15:15-16:45, Dr. Thomas
+('Thursday', 1, 1, 1, 2, 1),    -- Database Systems, CS 2021, Room 101, 9:45-11:15, Dr. Smith
+('Thursday', 6, 3, 20, 3, 3),   -- AI, CS 2023, Comp Lab 2, 11:30-13:00, Dr. Wilson
+('Thursday', 11, 6, 13, 9, 6),  -- Signal Processing, EE 2022, Lab 202, 14:00-16:00, Dr. Martinez
+('Thursday', 19, 14, 15, 4, 12), -- Physics II, Physics 2023, Auditorium A, 13:30-15:00, Dr. Martinez
+('Thursday', 26, 21, 14, 5, 16), -- Organic Chemistry, Chem 2023, Lab 301, 15:15-16:45, Dr. Thomas
 
 -- FRIDAY SCHEDULES
-('Friday', 3, 2, 3, 1, 1, 1),      -- Computer Networks, CS 2022, Room 103, 8:00-9:30, Dr. Smith
-('Friday', 7, 4, 21, 7, 2, 1),     -- Web Development, CS 2024, Comp Lab 3, 8:00-10:00, Dr. Johnson
-('Friday', 14, 11, 15, 3, 8, 1),   -- Calculus II, Math 2023, Auditorium A, 11:30-13:00, Dr. Davis
-('Friday', 12, 8, 5, 4, 6, 1),     -- Power Systems, EE 2024, Room 202, 13:30-15:00, Dr. Martinez
-('Friday', 24, 19, 17, 5, 15, 1),  -- Structural Analysis, Civil 2022, Seminar Hall 1, 15:15-16:45, Dr. Anderson
+('Friday', 3, 2, 3, 1, 1),      -- Computer Networks, CS 2022, Room 103, 8:00-9:30, Dr. Smith
+('Friday', 7, 4, 21, 7, 2),     -- Web Development, CS 2024, Comp Lab 3, 8:00-10:00, Dr. Johnson
+('Friday', 14, 11, 15, 3, 8),   -- Calculus II, Math 2023, Auditorium A, 11:30-13:00, Dr. Davis
+('Friday', 12, 8, 5, 4, 6),     -- Power Systems, EE 2024, Room 202, 13:30-15:00, Dr. Martinez
+('Friday', 24, 19, 17, 5, 15),  -- Structural Analysis, Civil 2022, Seminar Hall 1, 15:15-16:45, Dr. Anderson
 
 -- SATURDAY (Extra classes)
-('Saturday', 17, 10, 7, 2, 10, 1), -- Discrete Math, Math 2022, Room 301, 9:45-11:15, Prof. Thomas
-('Saturday', 30, 24, 16, 3, 18, 1), -- Financial Accounting, Business 2023, Auditorium B, 11:30-13:00, Dr. White
+('Saturday', 17, 10, 7, 2, 10), -- Discrete Math, Math 2022, Room 301, 9:45-11:15, Prof. Thomas
+('Saturday', 30, 24, 16, 3, 18), -- Financial Accounting, Business 2023, Auditorium B, 11:30-13:00, Dr. White
 
--- PENDING SCHEDULES (is_scheduled = 0)
-('Monday', 20, 15, 8, 6, 12, 0),   -- Quantum Mechanics, Physics 2024, Room 302, 17:00-18:30, Dr. Martinez (Pending)
-('Thursday', 23, 18, 9, 5, 14, 0), -- Machine Design, Mech 2024, Room 303, 15:15-16:45, Prof. Wilson (Pending)
-('Friday', 29, 25, 18, 4, 17, 0);  -- Marketing, Business 2024, Seminar Hall 2, 13:30-15:00, Jackson (Pending)
+-- ADDITIONAL SCHEDULES
+('Monday', 20, 15, 8, 6, 12),   -- Quantum Mechanics, Physics 2024, Room 302, 17:00-18:30, Dr. Martinez
+('Thursday', 23, 18, 9, 5, 14), -- Machine Design, Mech 2024, Room 303, 15:15-16:45, Prof. Wilson
+('Friday', 29, 25, 18, 4, 17);  -- Marketing, Business 2024, Seminar Hall 2, 13:30-15:00, Jackson
 
 PRINT 'Schedules inserted: 30';
 
