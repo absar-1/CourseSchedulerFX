@@ -92,8 +92,58 @@ public class DashboardController {
 
     @FXML
     public void onCoursesClick() {
-        showFeatureAlert("Courses", "Add and manage courses with credit hours.");
         System.out.println("Courses clicked");
+        navigateToCourseManagement();
+    }
+
+
+
+    private void navigateToCourseManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) coursesCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = coursesCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/course_management.fxml"));
+                Parent courseManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var courseCss = getClass().getResource("/css/course_management.css");
+                if (courseCss != null) {
+                    courseManagementContent.getStylesheets().add(courseCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add course management content
+                parentContainer.getChildren().add(courseManagementContent);
+                VBox.setVgrow(courseManagementContent, Priority.ALWAYS);
+                System.out.println("Course Management page loaded successfully");
+            } else {
+                System.err.println("Could not find mainContainer");
+                showFeatureAlert("Error", "Could not navigate to Course Management.");
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error loading course management: " + e.getMessage());
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Course Management: " + e.getMessage());
+        }
     }
 
     @FXML

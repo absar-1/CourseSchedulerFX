@@ -3,7 +3,6 @@ module com.example.courseschedulerfx {
     requires javafx.fxml;
     requires java.sql;
 
-
     opens com.example.courseschedulerfx to javafx.fxml;
     opens com.example.courseschedulerfx.controllers to javafx.fxml;
 

@@ -29,4 +29,9 @@ public class Course {
         return department;
     }
 
+    public void setCourseTitle(String courseTitle) {this.courseTitle = courseTitle;}
+    public void setCreditHours(int creditHours) {this.creditHours = creditHours;}
+    public void setDepartment(Department department) {this.department = department;}
+
+
 }
