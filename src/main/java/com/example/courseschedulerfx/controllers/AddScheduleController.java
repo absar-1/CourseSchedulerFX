@@ -287,7 +287,7 @@ public class AddScheduleController {
 
     private List<Course> getAvailableCourses() {
         try {
-            return CourseDAO.getAllCourses();
+            return CourseDAO.getCourseList();
         } catch (Exception e) {
             e.printStackTrace();
             return new java.util.ArrayList<>();

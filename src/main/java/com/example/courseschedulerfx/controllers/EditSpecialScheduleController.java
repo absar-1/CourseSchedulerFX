@@ -11,7 +11,9 @@ import javafx.stage.Stage;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class EditSpecialScheduleController {
 
@@ -386,7 +388,7 @@ public class EditSpecialScheduleController {
     // Helper methods to get available data
     private List<Course> getAvailableCourses() {
         try {
-            return CourseDAO.getAllCourses();
+            return CourseDAO.getCourseList();
         } catch (Exception e) {
             e.printStackTrace();
             return new java.util.ArrayList<>();
@@ -420,21 +422,29 @@ public class EditSpecialScheduleController {
         }
     }
 
+    // Changeddddd from absar
     private List<LocalTime> getAvailableTimes() {
         try {
             List<ClassSlot> slots = ClassSlotDAO.getAllSlots();
-            List<LocalTime> times = new java.util.ArrayList<>();
+            List<LocalTime> times = new ArrayList<>();
+
             for (ClassSlot slot : slots) {
                 times.add(slot.getStartTime());
                 times.add(slot.getEndTime());
             }
+
             times.sort(LocalTime::compareTo);
+
             // Remove duplicates
-            return times.stream().distinct().toList();
+            return times.stream()
+                    .distinct()
+                    .collect(Collectors.toList());
+
         } catch (Exception e) {
             e.printStackTrace();
-            return new java.util.ArrayList<>();
+            return new ArrayList<>();
         }
     }
+
 }
 

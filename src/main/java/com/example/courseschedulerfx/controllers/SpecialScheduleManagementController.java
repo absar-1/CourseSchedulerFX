@@ -443,7 +443,7 @@ public class SpecialScheduleManagementController {
 
     private List<Course> getAvailableCourses() {
         try {
-            return com.example.courseschedulerfx.DAO.CourseDAO.getAllCourses();
+            return com.example.courseschedulerfx.DAO.CourseDAO.getCourseList();
         } catch (Exception e) {
             e.printStackTrace();
             return new java.util.ArrayList<>();

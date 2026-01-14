@@ -63,4 +63,71 @@ public class DepartmentDAO {
         }
         return departments;
     }
+
+    public static boolean addDepartment(Department department) {
+        String query = "INSERT INTO departments (department_name) VALUES (?)";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, department.getDepartmentName());
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean deleteDepartment(int departmentID) {
+        String query = "DELETE FROM departments WHERE department_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, departmentID);
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static boolean updateDepartment(Department department) {
+        String query = "UPDATE departments SET department_name = ? WHERE department_id = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, department.getDepartmentName());
+            ps.setInt(2, department.getDepartmentID());
+            int rowsAffected = ps.executeUpdate();
+            return rowsAffected > 0;
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static List<String> getAllDepartmentNames() {
+        List<String> departmentNames = new ArrayList<>();
+        String query = "SELECT department_name FROM departments ORDER BY department_name";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                departmentNames.add(rs.getString("department_name"));
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return departmentNames;
+    }
+
+    public static int getDepartmentIdByName(String departmentName) {
+        String query = "SELECT department_id FROM departments WHERE department_name = ?";
+        try (Connection conn = DBConnection.getConnection();
+             PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, departmentName);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                return rs.getInt("department_id");
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return -1;
+    }
 }

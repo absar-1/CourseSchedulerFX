@@ -93,7 +93,52 @@ public class DashboardController {
 
     @FXML
     public void onCoursesClick() {
-        showFeatureAlert("Courses", "Add and manage courses with credit hours.");
+        navigateToCourseManagement();
+    }
+
+    private void navigateToCourseManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) coursesCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = coursesCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/course_management.fxml"));
+                Parent courseManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var courseCss = getClass().getResource("/css/course_management.css");
+                if (courseCss != null) {
+                    courseManagementContent.getStylesheets().add(courseCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add course management content
+                parentContainer.getChildren().add(courseManagementContent);
+                VBox.setVgrow(courseManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Course Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Course Management: " + e.getMessage());
+        }
     }
 
     @FXML
@@ -200,7 +245,52 @@ public class DashboardController {
     // People Management
     @FXML
     public void onTeachersClick() {
-        showFeatureAlert("Teachers", "Manage faculty members and their department assignments.");
+        navigateToTeacherManagement();
+    }
+
+    private void navigateToTeacherManagement() {
+        try {
+            // Find the mainContainer from the scene
+            VBox parentContainer = (VBox) teachersCard.getScene().lookup("#mainContainer");
+
+            if (parentContainer == null) {
+                // Alternative: navigate up the scene graph to find the main container
+                javafx.scene.Node current = teachersCard.getParent();
+                while (current != null) {
+                    if (current instanceof VBox && current.getId() != null && current.getId().equals("mainContainer")) {
+                        parentContainer = (VBox) current;
+                        break;
+                    }
+                    current = current.getParent();
+                }
+            }
+
+            if (parentContainer != null) {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/teacher_management.fxml"));
+                Parent teacherManagementContent = loader.load();
+
+                // Apply stylesheet to the loaded content
+                var teacherCss = getClass().getResource("/css/teacher_management.css");
+                if (teacherCss != null) {
+                    teacherManagementContent.getStylesheets().add(teacherCss.toExternalForm());
+                }
+
+                // Remove existing content (keep header at index 0)
+                if (parentContainer.getChildren().size() > 1) {
+                    parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
+                }
+
+                // Add teacher management content
+                parentContainer.getChildren().add(teacherManagementContent);
+                VBox.setVgrow(teacherManagementContent, Priority.ALWAYS);
+            } else {
+                showFeatureAlert("Error", "Could not navigate to Teacher Management.");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            showFeatureAlert("Error", "Failed to load Teacher Management: " + e.getMessage());
+        }
     }
 
 

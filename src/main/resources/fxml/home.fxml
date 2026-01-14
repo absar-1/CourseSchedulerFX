@@ -29,8 +29,8 @@
 
                 <!-- Cards Container - Grid Layout -->
                 <HBox spacing="20" prefHeight="250" alignment="CENTER">
-                    <!-- Teachers Card -->
-                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                    <!-- Teachers Card - Clickable -->
+                    <VBox fx:id="teacherCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleTeacherCardClick">
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20" />
                         </padding>
@@ -40,8 +40,8 @@
                         <Label text="Active instructors" styleClass="card-subtitle" />
                     </VBox>
 
-                    <!-- Courses Card -->
-                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                    <!-- Courses Card - Clickable -->
+                    <VBox fx:id="courseCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleCourseCardClick">
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20" />
                         </padding>
@@ -51,8 +51,8 @@
                         <Label text="Scheduled courses" styleClass="card-subtitle" />
                     </VBox>
 
-                    <!-- Departments Card -->
-                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                    <!-- Departments Card - Clickable -->
+                    <VBox fx:id="departmentCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleDepartmentCardClick">
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20" />
                         </padding>
@@ -62,8 +62,8 @@
                         <Label text="Active departments" styleClass="card-subtitle" />
                     </VBox>
 
-                    <!-- Classrooms Card -->
-                    <VBox styleClass="dashboard-card" prefWidth="200" prefHeight="180">
+                    <!-- Classrooms Card - Clickable -->
+                    <VBox fx:id="classroomCard" styleClass="dashboard-card" prefWidth="200" prefHeight="180" onMouseClicked="#handleClassroomCardClick">
                         <padding>
                             <Insets top="20" right="20" bottom="20" left="20" />
                         </padding>

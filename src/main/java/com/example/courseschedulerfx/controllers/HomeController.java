@@ -334,12 +334,12 @@ public class HomeController {
 
     @FXML
     private void handleTeacherCardClick(MouseEvent event) {
-        loadView("/fxml/user_management.fxml");
+        loadView("/fxml/teacher_management.fxml");
     }
 
     @FXML
     private void handleCourseCardClick(MouseEvent event) {
-        loadView("/fxml/department_management.fxml");
+        loadView("/fxml/course_management.fxml");
     }
 
     @FXML
@@ -372,6 +372,15 @@ public class HomeController {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
                 Parent content = loader.load();
 
+                // Determine and apply the appropriate CSS stylesheet based on the FXML path
+                String cssFile = determineCSSFile(fxmlPath);
+                if (cssFile != null) {
+                    var css = getClass().getResource(cssFile);
+                    if (css != null) {
+                        content.getStylesheets().add(css.toExternalForm());
+                    }
+                }
+
                 // Remove existing content (keep header at index 0)
                 if (parentContainer.getChildren().size() > 1) {
                     parentContainer.getChildren().remove(1, parentContainer.getChildren().size());
@@ -380,13 +389,28 @@ public class HomeController {
                 // Add user management content
                 parentContainer.getChildren().add(content);
                 VBox.setVgrow(content, Priority.ALWAYS);
-            } else {
-
             }
 
         } catch (Exception e) {
-
             e.printStackTrace();
         }
+    }
+
+    /**
+     * Determines the appropriate CSS file for the given FXML path
+     */
+    private String determineCSSFile(String fxmlPath) {
+        if (fxmlPath.contains("teacher")) {
+            return "/css/teacher_management.css";
+        } else if (fxmlPath.contains("course")) {
+            return "/css/course_management.css";
+        } else if (fxmlPath.contains("department")) {
+            return "/css/department_management.css";
+        } else if (fxmlPath.contains("schedule") || fxmlPath.contains("classroom")) {
+            return "/css/classroom_management.css";
+        } else if (fxmlPath.contains("user")) {
+            return "/css/user_management.css";
+        }
+        return null;
     }
 }
